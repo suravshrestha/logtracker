@@ -28,8 +28,7 @@ A teacher
 
 ----
 **To get the application up and running**   
-1. Clone the github repo    
-`git clone https://github.com/Supriya090/LogTracker.git`
+1. Clone the repo    
 
 2. Enter the project directory    
 `cd LogTracker`
@@ -44,8 +43,7 @@ A teacher
 
 Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.  
 **Team Members**    
-* [Prabin Paudel](https://github.com/prab205) (075BCT060)
-* [Rahul Shah](https://github.com/rahulshah63) (075BCT063)
-* [Ranju G.C.](https://github.com/Itshyphen) (075BCT064)
-* [Supriya Khadka](https://github.com/Supriya090) (075BCT090)
+* [Saurav Adhikari](https://github.com/ersauravadhikari) (076BCT072)
+* [Rajeev Paudel](https://github.com/) (075BCT054)
+* [Prasiddha B. Khawas](https://github.com/) (075BCT050)
  
