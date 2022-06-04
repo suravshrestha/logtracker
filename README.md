@@ -10,9 +10,10 @@ An admin
 	* Can call students for mid-term defence and final defence
 * **Student Mode**   
 A student
-	* Can add/edit minutes, comments and related attachments for each meeting
-	* Can create upcoming events 
-	* Can ask approval from supervisor(teacher) for mid-term and final defence
+    * Can add/edit minutes, comments and related attachments for each meeting
+    * Can create upcoming events 
+    * Can ask approval from supervisor(teacher) for mid-term and final defence
+
 * **Teacher Mode**   
 A teacher
 	* Can verify the minutes and related attachments written by students and add comments
