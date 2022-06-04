@@ -18,8 +18,7 @@ A student
 A teacher
 	* Can verify the minutes and related attachments written by students and add comments
 	* Can create upcoming events 
-	* Can approve a project for mid-term and final defence  
-
+	* Can approve a project for mid-term and final defence
 ----
 **Tools Involved**   
 * Bootstrap in the frontend (v5.0.1)
