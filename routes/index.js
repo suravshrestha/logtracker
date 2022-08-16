@@ -7,6 +7,7 @@ var Project = require("../models/Project");
 var Event = require("../models/Event");
 var Faculty = require("../models/Faculty");
 var File = require("../models/File")
+var LoginDetail = require("./auth")
 var { loggedin, ensureAuth } = require("../middleware/ensureLogin");
 
 /* GET Dashboard. */
@@ -71,6 +72,13 @@ router.get("/dashboard", loggedin, function (req, res, next) {
   }
 
 });
+
+// Get confirmation page
+router.get("/confirmregister", function (req, res, next) {
+  res.render("confirmregister", {
+    title: "Log Tracker | Confirm Register",
+  })
+}); 
 
 /* GET home page. */
 router.get("/", ensureAuth, function (req, res, next) {
@@ -293,7 +301,7 @@ router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
   });
 });
 
-/* GET Admin Create Team */
+/* GET signup page. */
 router.use("/signup", function (req, res, next) {  //!loggedin, 
   res.render("signup", {
     title: "Log Tracker | Sign Up",
@@ -301,7 +309,7 @@ router.use("/signup", function (req, res, next) {  //!loggedin,
   });
 });
 
-/* GET signup page. */
+/* GET Admin Create Team */
 router.get("/admin/createTeam", loggedin, function (req, res, next) {
   user = req.user
   if (user.userstatus == "admin") {

@@ -3,3 +3,4 @@ routes/uploads
 .vscode
 public/uploads
 .idea
+./config/config.env
