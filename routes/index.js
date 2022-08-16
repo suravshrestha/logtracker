@@ -301,6 +301,14 @@ router.use("/signup", function (req, res, next) {  //!loggedin,
   });
 });
 
+/* forgot passsword */
+router.use("/forgotPassword", function (req, res, next) {   //when forgot password link is clicked
+  res.render("forgotPassword", {
+    title: "Log Tracker | PasswordReset"
+  });
+});
+
+
 /* GET signup page. */
 router.get("/admin/createTeam", loggedin, function (req, res, next) {
   user = req.user

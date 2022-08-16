@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/User");
 
+
 module.exports = function (passport) {
   router.post("/signup", function (req, res) {
     let errors = [];
@@ -62,6 +63,7 @@ module.exports = function (passport) {
       failureFlash: true,
     })
   );
+
   return router;
 };
 

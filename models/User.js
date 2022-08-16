@@ -28,6 +28,10 @@ var UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  resetToken: {
+    type: String,
+    default: ''
+  }
 })
 
 //Methods to encrypt and decrypt password
