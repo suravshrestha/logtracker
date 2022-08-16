@@ -2,3 +2,4 @@ node_modules
 routes/uploads
 .vscode
 public/uploads
+.idea
