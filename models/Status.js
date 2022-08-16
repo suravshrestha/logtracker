@@ -12,3 +12,5 @@ var StatusSchema = new mongoose.Schema({
         required: true,
     },
 })
+
+var Status = module.exports = mongoose.model('Status', StatusSchema, 'status');
