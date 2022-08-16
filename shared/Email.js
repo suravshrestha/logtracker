@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
 
 async function send_email(to, code) {
     let info = await transporter.sendMail({
-        from: '"James Swanson" <foo@example.com>',
+        from: `"Log Tracker" <${smtpEmail}>`,
         to: to.toString(),
         subject: "Log Tracker Verification Code",
         text: `Your code is: ${code}`,
