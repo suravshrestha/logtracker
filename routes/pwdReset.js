@@ -86,6 +86,9 @@ router.use("/passwordTknVerify", function (req, res, next) {  //when reset passw
               res.redirect("/");  // if saved successfully, then redirect to login page
             }
           });
+        }else{
+          req.flash('message', 'confirm password did not match the new password')
+          res.redirect('/pwdReset/passwordReset')
         }
       }
     }
