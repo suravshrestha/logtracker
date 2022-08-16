@@ -5,6 +5,7 @@ var Status = require("../models/Status");
 var mail = require('../shared/Email');
 
 
+
 module.exports = function (passport) {
   router.post("/signup", function (req, res) {
     let errors = [];

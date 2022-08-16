@@ -23,6 +23,7 @@ connectDB();
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth")(passport);
+var pwdResetRouter = require("./routes/pwdReset");
 var minuteRouter = require("./routes/minute")
 var projectRouter = require("./routes/project")
 var facultyRouter = require("./routes/faculty")
@@ -77,6 +78,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/pwdReset", pwdResetRouter);
 app.use("/minute", minuteRouter);
 app.use("/project", projectRouter);
 app.use("/faculty", facultyRouter);

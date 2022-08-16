@@ -315,7 +315,14 @@ router.use("/signup", function (req, res, next) {  //!loggedin,
   });
 });
 
-/* GET Admin Create Team */
+/* forgot passsword */
+router.use("/forgotPassword", function (req, res, next) {   //when forgot password link is clicked
+  res.render("forgotPassword", {
+    title: "Log Tracker | PasswordReset"
+  });
+});
+
+
 router.get("/admin/createTeam", loggedin, function (req, res, next) {
   user = req.user
   if (user.userstatus == "admin") {
