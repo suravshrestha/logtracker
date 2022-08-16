@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/User");
+var mail = require('../shared/Email');
 
 router.use("/passwordReset", function (req, res, next) {  //when send token button is pressed
   var body = req.body,
@@ -25,8 +26,7 @@ router.use("/passwordReset", function (req, res, next) {  //when send token butt
       } else {  // if email exists in database
         // generating token. Token should be sent to gmail here
 
-        const rndToken = Math.floor(100000 + Math.random() * 900000);
-        console.log(rndToken);
+        const rndToken = mail.SendCodeToUser(email);
         user.resetToken = rndToken; //assigning generated token to given user
         user.save(function (err, user) {  //saving changes to database
           //Save to database
