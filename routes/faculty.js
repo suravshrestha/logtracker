@@ -9,7 +9,6 @@ router.use(
   "/save",
   (req, res, next) => {
     try {
-      console.log("save")
       console.log(JSON.stringify(req.body));
 
       const faculty = new Faculty();

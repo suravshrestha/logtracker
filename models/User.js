@@ -18,11 +18,16 @@ var UserSchema = new mongoose.Schema({
   },
   level: {
     type: String,
-   
+    
   },
   userstatus: {
     type: String,
     required: true,
+  },
+  activateStatus: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
   createdAt: {
     type: Date,
