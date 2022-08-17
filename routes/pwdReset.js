@@ -36,7 +36,7 @@ router.use("/passwordReset", function (req, res, next) {  //when send token butt
             // res.status(500).send("Database error occured");
           } else {
             // res.render('/admin')
-            req.flash('message', 'token generated successfully')
+            req.flash('message', 'token sent to mail')
             res.render("passwordReset", { //rendering password reset page where token and new password is to be entered
               title: "Log Tracker | PasswordReset",
               message: req.flash('message', '')
