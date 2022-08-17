@@ -20,7 +20,7 @@ router.use("/passwordReset", function (req, res, next) {  //when send token butt
           console.log('redirected catched, so not sending token again')
           res.render("passwordReset", { //rendering password reset screen where token is to be entered
             title: "Log Tracker | PasswordReset",
-            message: req.flash('message', 'token did not match')
+            message: req.flash('message', '')
           });
         }
       } else {  // if email exists in database
@@ -36,9 +36,10 @@ router.use("/passwordReset", function (req, res, next) {  //when send token butt
             // res.status(500).send("Database error occured");
           } else {
             // res.render('/admin')
+            req.flash('message', 'token generated successfully')
             res.render("passwordReset", { //rendering password reset page where token and new password is to be entered
               title: "Log Tracker | PasswordReset",
-              message: req.flash('message', 'token generated successfully')
+              message: req.flash('message', '')
             });
           }
         });
