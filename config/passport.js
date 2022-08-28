@@ -18,8 +18,8 @@ module.exports = function (passport) {
       {
         passReqToCallback: true, // allows us to pass back the entire request to the callback
       },
-      function(req,email, password, done,res) {
-        User.findOne({ email: email }, function(err, user) {
+      function (req, email, password, done, res) {
+        User.findOne({ email: email }, function (err, user) {
           // if there are any errors, return the error before anything else
           if (err) return done(err)
           if (!user)
@@ -31,13 +31,13 @@ module.exports = function (passport) {
               false,
               req.flash("message", "Oops! Wrong password.")
             )
-          
+
           if (user.activateStatus == false) {
             // res.render("confirmregister", {
             //   title: "Log Tracker | Confirm Register",
             //   email: email,
             // })
-            return done(null, false, req.flash("message", "Not Activated.")) 
+            return done(null, false, req.flash("message", "Email Not Activated."))
           }
           //return successful user in req.user or in req.session.passport.user
           return done(null, user, req.flash("message", "Logged in Successfully"))

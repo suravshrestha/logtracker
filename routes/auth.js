@@ -11,11 +11,11 @@ module.exports = function (passport) {
     let errors = [];
 
     var body = req.body,
-    email = body.email,
-    emailUser = email,
-    username = body.username,
-    password = body.password,
-    status = body.userstatus;
+      email = body.email,
+      emailUser = email,
+      username = body.username,
+      password = body.password,
+      status = body.userstatus;
     level = body.level
 
     if (!username || !password || !email) {
@@ -77,29 +77,29 @@ module.exports = function (passport) {
 
   // For Login using local strategy
   router.post(
-    "/login", 
-      passport.authenticate("local", {
-        failureRedirect: "/",
-        successRedirect: "/dashboard",
-        failureFlash: true,
-      })
-    
+    "/login",
+    passport.authenticate("local", {
+      failureRedirect: "/",
+      successRedirect: "/dashboard",
+      failureFlash: true,
+    })
+
   );
-  
-  router.post("/activate", function (req, res) { 
-    let errors = [];
+
+  router.use("/activate", function (req, res) {
+    console.log('activate')
+    // let errors = [];
     var body = req.body;
     email = body.email;
     User.findOne({ email: email }, function (err, doc) {
-      if (err) {
-        req.flash('message', 'Could not find the email.')
-        res.redirect('/signup')
-      } else {
+      if (doc) {
+        console.log('user found')
         var newCode = mail.SendCodeToUser(email);
         Status.findOne({ email: email }, function (err, doc) {
           if (doc) {
+            console.log('status found')
             doc.code = newCode;
-            doc.save(function (err,status){
+            doc.save(function (err, status) {
               if (err) {
                 req.flash('message', 'Could not find the email.')
               }
@@ -108,30 +108,42 @@ module.exports = function (passport) {
               }
             })
             res.render("confirmRegister", {
-                title: "Log Tracker | Confirm Register",
-                email: email,
-              })
+              title: "Log Tracker | Confirm Register",
+              email: email,
+            })
+          }
+          else {
+            console.log('cant find user')
+            res.redirect("/signup")
+            req.flash('message', 'Could not find the email.')
           }
         })
       }
-    })
+      else {
+        req.flash('message', 'Could not find the email. Check if email is correct.')
+        res.redirect("/")
+      }
+    }
+    )
   })
 
 
-  router.post("/check", function (req, res) {
+  router.use("/check", function (req, res) {
+    console.log('check')
     let errors = [];
     var body = req.body;
     email = body.email;
     console.log(body)
     code = body.confirmCode;
-    if (!email || !code ) {
+    if (!email || !code) {
       errors.push({ msg: "Please fill in all fields" });
     }
-    Status.findOne({ email: email }, function (err, doc) { 
+    Status.findOne({ email: email }, function (err, doc) {
+      console.log('status found')
       if (doc) {
         if (doc.code == code) {
           res.redirect('/');
-          User.findOne({ email: email }, function (err, doc) { 
+          User.findOne({ email: email }, function (err, doc) {
             if (doc) {
               doc.activateStatus = true;
               doc.save(function (err, user) {
@@ -144,14 +156,18 @@ module.exports = function (passport) {
               }
               )
             }
-            else { 
+            else {
               req.flash('message', 'Unsuccessful')
             }
           })
         }
         else {
           req.flash('message', 'Wrong Code')
+          res.redirect('/')
         }
+      }
+      else {
+        req.flash('message', 'Please check your Email')
       }
     })
   });
