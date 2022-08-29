@@ -33,7 +33,7 @@ module.exports = function (passport) {
           req.flash('message', 'Email is already Registered!\n Please login to continue!')
           res.redirect('/signup') //if user with same username already exist
         } else {
-          res.render("confirmregister", {
+          res.render("confirmRegister", {
             title: "Log Tracker | Confirm Register",
             email: emailUser,
           })
