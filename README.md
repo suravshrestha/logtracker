@@ -1,6 +1,8 @@
 
 # Log Tracker
 
+Note: This repo has some improvement over: https://github.com/Supriya090/LogTracker
+
 Log Tracker is a web application to track the updates of a project or a thesis. The application has three modes:
 * **Admin Mode**   
 An admin 
