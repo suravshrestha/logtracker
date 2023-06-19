@@ -1,7 +1,6 @@
-
 # Log Tracker
 
-Note: This repo has some improvement over: https://github.com/Supriya090/LogTracker
+Note: This repo has some improvement over: https://gitlab.com/ersauravadhikari/logtracker
 
 Log Tracker is a web application to track the updates of a project or a thesis. The application has three modes:
 * **Admin Mode**   
@@ -32,7 +31,7 @@ A teacher
 1. Clone the repo    
 
 2. Enter the project directory    
-`cd LogTracker`
+`cd logtracker`
 
 3. Install the dependencies    
 `npm install`
@@ -44,7 +43,6 @@ A teacher
 
 Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.  
 **Team Members**    
-* [Saurav Adhikari](https://github.com/ersauravadhikari) (076BCT072)
-* [Rajeev Paudel](https://github.com/) (075BCT054)
-* [Prasiddha B. Khawas](https://github.com/) (075BCT050)
- 
+* [Sandhya Baral](https://github.com/Sandukkk) (077BCT076)
+* [Sujan Kapali](https://github.com/Sk47R) (077BCT086)
+* [Surav Krishna Shrestha](https://github.com/suravshrestha) (077BCT089)
