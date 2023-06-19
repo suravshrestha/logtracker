@@ -24,9 +24,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth")(passport);
 var pwdResetRouter = require("./routes/pwdReset");
-var minuteRouter = require("./routes/minute")
-var projectRouter = require("./routes/project")
-var facultyRouter = require("./routes/faculty")
+var minuteRouter = require("./routes/minute");
+var projectRouter = require("./routes/project");
+var facultyRouter = require("./routes/faculty");
 
 var app = express();
 
@@ -46,10 +46,11 @@ app.use(
     secret: process.env.Secret,
     saveUninitialized: false,
     resave: false,
-    store: MongoStore.create({ mongoUrl: process.env.Mongo_URI })
+    store: MongoStore.create({
+      mongoUrl: process.env.Mongo_URI || "mongodb://localhost:27017/logtracker",
+    }),
   })
 );
-
 
 //Passport middlewares
 app.use(passport.initialize());
