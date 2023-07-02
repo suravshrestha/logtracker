@@ -19,30 +19,55 @@ A teacher
 	* Can verify the minutes and related attachments written by students and add comments
 	* Can create upcoming events 
 	* Can approve a project for mid-term and final defence
-----
-**Tools Involved**   
+
+## Tech stack
 * Bootstrap in the frontend (v5.0.1)
 * Node.js in the backend (v13.6.0)
 * Express, ejs as the template engine (v4.16.1)
 * MongoDB as the database (v3.6.8)
 
-----
-**To get the application up and running**   
-1. Clone the repo    
+## Usage
+1. Clone the repository
+```
+git clone https://github.com/suravshrestha/logtracker.git
+```
 
-2. Enter the project directory    
-`cd logtracker`
+2. Navigate to the repository :open_file_folder:
+```
+cd logtracker
+```
 
-3. Install the dependencies    
-`npm install`
+3. Install the dependencies
+```
+npm install
+```
+This might take a while to complete.
 
-4. Run the program    
-`npm start`
+4. Create a `.env` file inside the backend folder and set the following credentials:
+```
+#.env
+SECRET=
 
-----
+# Nodemailer
+SMTP_EMAIL=
+SMTP_PASSWORD=
+```
+For development, get the Nodemailer credentials from [Ethereal](https://ethereal.email/)
 
-Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.  
-**Team Members**    
+5. Start the development server
+```
+npm run start
+```
+
+You can view the application at http://localhost:3000/.
+
+**Note**:
+- For admin and teacher signup use `ioe.edu.np` domain
+- For student signup use `pcampus.edu.np` domain
+
+Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.
+
+## Team Members
 * [Sandhya Baral](https://github.com/Sandukkk) (077BCT076)
 * [Sujan Kapali](https://github.com/Sk47R) (077BCT086)
 * [Surav Krishna Shrestha](https://github.com/suravshrestha) (077BCT089)
