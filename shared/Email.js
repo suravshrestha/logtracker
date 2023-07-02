@@ -2,8 +2,8 @@ const nodemailer = require('nodemailer');
 
 const smtpEmail = process.env.SMTP_EMAIL
 const smtpPassword = process.env.SMTP_PASSWORD
-const smtpServer = process.env.SMTP_SERVER
-const smtpPort = process.env.SMTP_PORT
+const smtpServer = process.env.SMTP_SERVER || "smtp.ethereal.email"
+const smtpPort = process.env.SMTP_PORT || 587
 
 
 const transporter = nodemailer.createTransport({

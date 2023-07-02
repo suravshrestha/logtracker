@@ -43,11 +43,11 @@ app.use(express.static(path.join(__dirname, "public")));
 //Sessions
 app.use(
   session({
-    secret: process.env.Secret,
+    secret: process.env.SECRET,
     saveUninitialized: false,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: process.env.Mongo_URI || "mongodb://localhost:27017/logtracker",
+      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/logtracker",
     }),
   })
 );
