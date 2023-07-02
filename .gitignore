@@ -4,3 +4,4 @@ routes/uploads
 public/uploads
 .idea
 ./config/config.env
+*.env
