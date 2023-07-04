@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port, async () => {
-  console.log(`Server running on port ${port}\nYou can view logracker in the browser at http://localhost:${port}\n`);
+  console.log(`Server running on port ${port}\nYou can view logracker in the browser at\nhttp://localhost:${port}\n`);
 });
 server.on("error", onError);
 server.on("listening", onListening);
