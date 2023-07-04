@@ -1,0 +1,765 @@
+[
+  {
+    "name": "Aerospace Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Mathematics I",
+          "Applied Mechanics",
+          "Engineering Drawing",
+          "Engineering Physics",
+          "Basic Electrical Engineering",
+          "Workshop Technology",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Mathematics II",
+          "Engineering Drawing II",
+          "Basic Electronics Engineering",
+          "Engineering Chemistry",
+          "C Programming",
+          "Fundamental of Thermodynamics & Heat Transfer",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Applied Thermodynamics and Heat Transfer",
+          "Computer Aided Design and Manufacturing",
+          "Engineering Mechanics",
+          "Fluid Mechanics",
+          "Fundamental of Aerospace Engineering",
+          "Engineering Mathemathics III",
+          "",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Theory of Mechanism and Machine I",
+          "Aerodynamics",
+          "Aerospace Materials",
+          "Control System",
+          "Probabillity and Statistics",
+          "Strength of Materials",
+          "",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Aircraft Manufacturing Process",
+          "Aircraft Propulsion",
+          "Continuum Mechanics",
+          "Fault Monitoring and Diagnosis",
+          "Numerical Methods",
+          "Theory of Vibration",
+          "",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Avionics",
+          "Finite Element Method",
+          "Aircraft Maintenance Engineering",
+          "Aircraft Environment Control System",
+          "Flight Dynamics",
+          "Unmanned Air Vehicle Synthesis",
+          "",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Aircraft Preliminary Design",
+          "Computational Fluid Dynamics",
+          "Air Traffic Management",
+          "Aircraft Structures",
+          "Embedded Systems in Avionics",
+          "Project(Part I)",
+          "Elective I",
+          ""
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Internship",
+          "Aviation Professional Practices",
+          "Factor in Aviation",
+          "Elective II",
+          "Elective III",
+          "Project(Part II)",
+          "",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Computer Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Mathematics I",
+          "Computer Programming",
+          "Engineering Drawing I",
+          "Engineering Physics",
+          "Applied Mechanics",
+          "Basic Electrical Engineering",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Mathematics II",
+          "Engineering Drawing II",
+          "Fundamental of Thermodynamics",
+          "Engineering Chemistry",
+          "Basic Electronics Engineering",
+          "Workshop Technology",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Mathematics III",
+          "Object Oriented Programming",
+          "Theory of Computation",
+          "Electric Circuit Theory",
+          "Electronics Devices and Circuit",
+          "Digital Logic",
+          "Electromagnetics",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Electrical Machine",
+          "Numerical Method",
+          "Applied Mathematics",
+          "Instrumentation I",
+          "Data Structure and Algorithm",
+          "Microprocessor",
+          "Discrete Structure",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Communication English",
+          "Probability and Statistics",
+          "Software Engineering",
+          "Instrumentation II",
+          "Computer organization and Architecture",
+          "Computer Graphics",
+          "Data Communication",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Engineering Economics",
+          "Embedded System",
+          "Artificial Intelligence",
+          "Database Managrement System",
+          "Object Oriented Analysis & Design",
+          "Operating System",
+          "Minor Project",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Project Management",
+          "Organization and Management",
+          "Energy Enviroment and Society",
+          "Computer Network",
+          "Distributed System",
+          "Digital Signal Analysis & Processing",
+          "Elective I",
+          "Final Project"
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Engineeering Professional Practice",
+          "Information Systems",
+          "Simulation and Modeling",
+          "Internet and Intranet",
+          "Elective II",
+          "Elective III",
+          "Final Project",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Electronics and Communication Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Mathematics I",
+          "Computer Programming",
+          "Engineering Drawing I",
+          "Engineering Physics",
+          "Applied Mechanics",
+          "Basic Electrical Engineering",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Mathematics II",
+          "Engineering Drawing II",
+          "Basic Electronics Engineering",
+          "Engineering Chemistry",
+          "Workshop Technology",
+          "Fundamental of Thermodynamics & Heat Transfer",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Mathematics III",
+          "Object Oriented Programming",
+          "Electrical Circuit Theory",
+          "Electrical Engineering Material",
+          "Electronics Devices and Circuit",
+          "Digital Logic",
+          "Electromagnetism",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Electrical Machine",
+          "Numerical Method",
+          "Applied Mathematics",
+          "Instrumentation I",
+          "Power System",
+          "Microprocessor",
+          "Discrete Structur",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Communication English",
+          "Probability and Statistics",
+          "Computer organization and Architecture",
+          "Control System",
+          "Advanced Electronics",
+          "Instrumentation II",
+          "Computer Graphic",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Engineering Economics",
+          "Signal Analysis",
+          "Communication System I",
+          "Antenna and Propagation",
+          "Embedded System",
+          "Computer Networks",
+          "Minor Project",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Project Management",
+          "Organization and Management",
+          "Energy Environment and Society",
+          "Filter Design",
+          "Communication System II",
+          "Telecommunication",
+          "Elective I",
+          "Project (Part A)"
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Engineering Professional Practice",
+          "Digital Signal Processing",
+          "Wireless Communication",
+          "RF and Microwave Engineering",
+          "Elective II",
+          "Elective III",
+          "Project (Part B)",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Civil Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Engineering Mathematics I",
+          "Engineering Drawing I",
+          "Engineering Chemistry",
+          "Fundamental of Thermodynamics & Heat Transfer",
+          "Computer Programming",
+          "Workshop Technology",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Applied Mechanics",
+          "Engineering Mathematics II",
+          "Engineering Physics",
+          "Basic Electronics Engineering",
+          "Engineering Drawing II",
+          "Basic Electrical Engineering",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Civil Engineering Materials",
+          "Engineering Mathematics III",
+          "Applied Mechanics(Dynamics)",
+          "Engineering Geology I",
+          "Strength of Materials",
+          "Surveying I",
+          "Fluid mechanics",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Hydraulics",
+          "Surveying II",
+          "Theory of Structure",
+          "Probability & Statistics ",
+          "Engineering Geology",
+          "Building Drawing",
+          "Soil Mechanics",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Theory of structures II",
+          "Water Supply Engineering",
+          "Engineering hydrology",
+          "Concrete Technology and masonry structure",
+          "Numerical Methods[",
+          "Foundation Engineering",
+          "",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Design of Steel and Timber Structure",
+          "Communication English",
+          "Engineering Economics",
+          "Building Technology",
+          "Sanitary Engineering",
+          "Transportation Engineering",
+          "Irrigation and Drainage",
+          "Survey Camp"
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Hydropower Engineering",
+          "Project Engineering",
+          "Transportation Engineering II",
+          "Estimating & Costing",
+          "Elective I",
+          "Design of RCC Structure",
+          "",
+          ""
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Computational Techniques in Civil Engineering",
+          "Engineering Professional Practice",
+          "Technology Environment and Society",
+          "Construction Management",
+          "Project (Part II)",
+          "Elective II",
+          "Elective III",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Electrical Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Mathematics I ",
+          "Computer Programming",
+          "Engineering Drawing I",
+          "Engineering Physics",
+          "Applied Mechanics",
+          "Basic Electrical Engineering",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Mathematics II",
+          "Engineering Drawing",
+          "Basic Electronics Engineering",
+          "Engineering Chemistry",
+          "Fundamental of Thermodynamics",
+          "Workshop Technology",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Mathematics III",
+          "Object Oriented Programming",
+          "Electric Circuit Theory",
+          "Electrical Engineering Material",
+          "Electronics Devices and Circuits",
+          "Digital Logic",
+          "Electromagnetic",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Electrical Machine I",
+          "Numerical Method",
+          "Applied Mathematics",
+          "Instrumentation I",
+          "Power System Analysis I",
+          "Microprocessor",
+          "",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Communication English",
+          "Probability and Statistic",
+          "Control System",
+          "Instrumentation II",
+          "Power System Analysis II",
+          "Electrical Machine Design",
+          "Electrical Machine II",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Engineering Economics",
+          "Digital Control System",
+          "Signal Analysis",
+          "Switchgear and Protection",
+          "Industrial Distribution and Illumination",
+          "Hydro Power",
+          "",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Project Engineering",
+          "Organization and Management",
+          "Technology Environment and Society",
+          "Power Electronics",
+          "Utilization of Electrical Energy",
+          "Elective I",
+          "Power Plant Equipment",
+          "Project (Part A)"
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Engineering Professional Practice",
+          "High Voltage Engineering",
+          "Power Plant Design",
+          "Transmission and Distribution Design",
+          "Elective II",
+          "Elective III",
+          "Project (Part B)",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Mechanical Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Mathematics I ",
+          "Computer Programming",
+          "Engineering Drawing I",
+          "Engineering Chemistry",
+          "Fundamental of Thermodynamics  & Heat Transfer",
+          "Workshop Technology ",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Applied Mechanics",
+          "Engineering Mathematics II",
+          "Engineering Physics",
+          "Basic Electronics Engineering",
+          "Engineering Drawing II",
+          "Basic Electrical Engineering",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Mathematics III",
+          "Material Science",
+          "Engineering Mechanics",
+          "Metrology",
+          "Applied Thermodynamics",
+          "Computer Aided Drawing",
+          "Electromagnetism",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Probability And Statistics",
+          "Electrical Machine",
+          "Manufacturing And Production Processes",
+          "Strength of Materials",
+          "Instrumentation and Measurement",
+          "Fluid Mechanics",
+          "",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Numerical Methods",
+          "Control System",
+          "Organization and Management",
+          "Mechanics of Solids",
+          "Heat Transfer ",
+          "Fluid Machines",
+          "",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Communication English",
+          "Machine Design I",
+          "Industrial Engineering and Management",
+          "Theory of Mechanism and Machine I",
+          "Internal Combustion Engines",
+          "Energy Resources",
+          "",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Machine Design II",
+          "Theory of Mechanism and Machine II",
+          "Engineering Economics",
+          "Turbo Machines",
+          "Environment and Pollution Control",
+          "Industrial Attachment",
+          "Elective I",
+          ""
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Project Engineering ",
+          "Finite Element Method",
+          "Engineering Professional Practice ",
+          "Project I & II ME",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  },
+  {
+    "name": "Electronics, communication and Information Engineering",
+    "courses": [
+      {
+        "subjects": [
+          "Engineering Drawing I",
+          "Engineering Physics",
+          "Basic Electrical Engineering",
+          "Digital Logic",
+          "Engineering Mathematics I",
+          "Computer Programming",
+          "",
+          ""
+        ],
+        "semester": 1
+      },
+      {
+        "subjects": [
+          "Engineering Mathematics II",
+          "Engineering Chemistry",
+          "Workshop Technology",
+          "Object Oriented Programming",
+          "Microprocessor",
+          "ELECTRIC CIRCUITS AND MACHINES",
+          "",
+          ""
+        ],
+        "semester": 2
+      },
+      {
+        "subjects": [
+          "Probability and Statistics",
+          "Engineering Mathematics III",
+          "Electronics Devices and Circuit",
+          "Instrumentation",
+          "Control System",
+          "Electromagnetics",
+          "",
+          ""
+        ],
+        "semester": 3
+      },
+      {
+        "subjects": [
+          "Applied Mathematics",
+          "Numerical Method",
+          "Data Structure and Algorithm",
+          "Computer Graphics",
+          "Discrete Structure",
+          "",
+          "",
+          ""
+        ],
+        "semester": 4
+      },
+      {
+        "subjects": [
+          "Computer organization and Architecture",
+          "Engineering Economics",
+          "Database Management System",
+          "Operating System",
+          "Filter Desig",
+          "Computer Network",
+          "",
+          ""
+        ],
+        "semester": 5
+      },
+      {
+        "subjects": [
+          "Communication English",
+          "Embedded System",
+          "Antenna and Propagation",
+          "Minor Project",
+          "Communication System I",
+          "",
+          "",
+          ""
+        ],
+        "semester": 6
+      },
+      {
+        "subjects": [
+          "Artificial Intelligence",
+          "Digital Signal Analysis and Processing",
+          "Organization and Management",
+          "RF and Microwave Engineering",
+          "Wireless Communication",
+          "Project (Part A)",
+          "",
+          ""
+        ],
+        "semester": 7
+      },
+      {
+        "subjects": [
+          "Digital Signal Processing (DSP)",
+          "Project (Part B)",
+          "Engineering Professional Practice",
+          "Information Systems",
+          "Telecommunicatio",
+          "Energy Environment and Society",
+          "",
+          ""
+        ],
+        "semester": 8
+      }
+    ]
+  }
+]

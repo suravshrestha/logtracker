@@ -1,5 +1,11 @@
 const mongoose = require("mongoose");
 
+const Faculty = require("../models/Faculty");
+
+const fs = require("fs");
+const facultiesData = fs.readFileSync("./config/faculties.json");
+const faculties = JSON.parse(facultiesData);
+
 //Connect Database
 const connectDB = async () => {
   try {
@@ -12,6 +18,12 @@ const connectDB = async () => {
         useCreateIndex: true,
       }
     );
+
+    Faculty.countDocuments({}, async (err, count) => {
+      if (count == 0) {
+        Faculty.insertMany(faculties);
+      }
+    });
   } catch (err) {
     console.error(err);
     process.exit(1);
