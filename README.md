@@ -43,7 +43,7 @@ npm install
 ```
 This might take a while to complete.
 
-4. Create a `.env` file inside the backend folder and set the following credentials:
+4. Create a `.env` file in the root of the project and set the following credentials:
 ```
 #.env
 SECRET=
