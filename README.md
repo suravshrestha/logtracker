@@ -56,12 +56,13 @@ For development, get the Nodemailer credentials from [Ethereal](https://ethereal
 
 5. Start the development server
 ```
-npm run start
+npm run dev
 ```
 
 You can view the application at http://localhost:3000/.
 
-**Note**:
+**Note:**
+- When the development server is first run, it will populate the faculties using the data from config/faculties.json.
 - For admin and teacher signup use `ioe.edu.np` domain
 - For student signup use `pcampus.edu.np` domain
 
