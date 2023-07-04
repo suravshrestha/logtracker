@@ -1,10 +1,11 @@
+require("dotenv").config();
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-var dotenv = require("dotenv");
 var connectDB = require("./config/mongo");
 var flash = require("connect-flash");
 var session = require("express-session");
@@ -16,7 +17,6 @@ var passport = require("passport");
 require("./config/passport")(passport);
 
 //Load configs
-dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 //Routes
