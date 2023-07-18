@@ -11,23 +11,74 @@
         <form action="/auth/signup" class="login-form" method="post">
             <div class="form-group">
                 <label for="email">EMAIL</label>
-                <input type="email" class="form-control" id="emailTeacher" name="email" pattern="^[A-Za-z0-9]+(.|_)+[A-Za-z0-9]+@+ioe.edu.np$" required>
+                <input
+                type="email"
+                class="form-control"
+                id="emailTeacher"
+                name="email"
+                pattern="^[A-Za-z0-9]+(.|_)+[A-Za-z0-9]+@+ioe.edu.np$"
+                required
+                />
             </div>
             <div class="form-group">
-                <label for="username">USERNAME </label>
-                <input type="text" class="form-control" id="usernameTeacher" name="username" required>
+                <label for="username">USERNAME</label>
+                <input
+                type="text"
+                class="form-control"
+                id="usernameTeacher"
+                name="username"
+                required
+                />
             </div>
             <div class="form-group">
                 <label for="password">PASSWORD</label>
-                <input type="password" class="form-control" id="passwordTeacher" name="password" minlength=8 required>
+                <input
+                type="password"
+                class="form-control"
+                id="passwordTeacher"
+                name="password"
+                minlength="8"
+                required
+                />
             </div>
             <div class="form-group">
-                <input type="hidden" id="admin" value="teacher" name ="userstatus">
+                <label for="confirmPassword">CONFIRM PASSWORD</label>
+                <input
+                type="password"
+                class="form-control"
+                id="confirmPasswordTeacher"
+                name="confirmPassword"
+                minlength="8"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="admin" value="teacher" name="userstatus" />
             </div>
             <div class="button-div">
-                <input class="btn btn-outline-primary login-btn" type="submit" value="Signup">
+                <input
+                class="btn btn-outline-primary login-btn"
+                type="submit"
+                value="Signup"
+                onclick="return validatePassword()"
+                />
             </div>
             <%- include('../messages') %>
         </form>
     </div>
 </div>
+
+<script>
+  function validatePassword() {
+    var password = document.getElementById("passwordTeacher").value;
+    var confirmPassword = document.getElementById("confirmPasswordTeacher")
+      .value;
+
+    if (password !== confirmPassword) {
+      alert("Password and Confirm Password do not match.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
