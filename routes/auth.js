@@ -32,11 +32,6 @@ module.exports = function (passport) {
           req.flash('message', 'Email is already Registered!\n Please login to continue!')
           res.redirect('/') //if user with same username already exist
         } else {
-          res.render("confirmRegister", {
-            title: "Log Tracker | Confirm Register",
-            email: emailUser,
-          })
-
           var code = mail.SendCodeToUser(email);
           var regCode = new Status();
           regCode.email = email;
@@ -105,10 +100,6 @@ module.exports = function (passport) {
               else {
                 req.flash('message', 'Code has been sent to your email.')
               }
-            })
-            res.render("confirmRegister", {
-              title: "Log Tracker | Confirm Register",
-              email: email,
             })
           }
           else {

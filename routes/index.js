@@ -73,13 +73,6 @@ router.get("/dashboard", loggedin, function (req, res, next) {
 
 });
 
-// Get confirmation page
-router.get("/confirmregister", function (req, res, next) {
-  res.render("confirmregister", {
-    title: "Log Tracker | Confirm Register",
-  })
-}); 
-
 router.get("/activate", function (req, res, next) {
   res.render("activateEmail", {
     title: "Log Tracker | Activate Email",
