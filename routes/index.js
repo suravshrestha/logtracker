@@ -73,12 +73,6 @@ router.get("/dashboard", loggedin, function (req, res, next) {
 
 });
 
-router.get("/activate", function (req, res, next) {
-  res.render("activateEmail", {
-    title: "Log Tracker | Activate Email",
-  })
-}); 
-
 /* GET home page. */
 router.get("/", ensureAuth, function (req, res, next) {
   res.render("index", {
@@ -129,8 +123,6 @@ router.get("/student/eachProject/:pId", loggedin, function (req, res, next) {
     }
   });
 });
-
-
 
 /* GET Student Minutes */
 router.get(
@@ -196,8 +188,6 @@ router.get(
   }
 );
 
-
-
 router.get(
   "/admin/editTeam/:pId",
   loggedin,
@@ -252,9 +242,6 @@ router.get(
 
       }
     });
-
-
-
   }
 );
 
