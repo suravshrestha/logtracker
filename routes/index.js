@@ -307,14 +307,6 @@ router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
   });
 });
 
-/* GET signup page. */
-router.use("/signup", function (req, res, next) {  //!loggedin, 
-  res.render("signup", {
-    title: "Log Tracker | Sign Up",
-    message: req.flash('message')
-  });
-});
-
 /* forgot passsword */
 router.use("/forgotPassword", function (req, res, next) {   //when forgot password link is clicked
   res.render("forgotPassword", {

@@ -25,13 +25,12 @@ module.exports = function (passport) {
     User.findOne({ email: email }, function (err, doc) {
       if (err) {
         req.flash('message', 'Could Not Add You !! DataBase may be Down !')
-        res.redirect('/signup')
       }
       else {
 
         if (doc) {
           req.flash('message', 'Email is already Registered!\n Please login to continue!')
-          res.redirect('/signup') //if user with same username already exist
+          res.redirect('/') //if user with same username already exist
         } else {
           res.render("confirmRegister", {
             title: "Log Tracker | Confirm Register",
@@ -114,7 +113,6 @@ module.exports = function (passport) {
           }
           else {
             console.log('cant find user')
-            res.redirect("/signup")
             req.flash('message', 'Could not find the email.')
           }
         })
