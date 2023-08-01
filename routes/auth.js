@@ -25,19 +25,13 @@ module.exports = function (passport) {
     User.findOne({ email: email }, function (err, doc) {
       if (err) {
         req.flash('message', 'Could Not Add You !! DataBase may be Down !')
-        res.redirect('/signup')
       }
       else {
 
         if (doc) {
           req.flash('message', 'Email is already Registered!\n Please login to continue!')
-          res.redirect('/signup') //if user with same username already exist
+          res.redirect('/') //if user with same username already exist
         } else {
-          res.render("confirmRegister", {
-            title: "Log Tracker | Confirm Register",
-            email: emailUser,
-          })
-
           var code = mail.SendCodeToUser(email);
           var regCode = new Status();
           regCode.email = email;
@@ -87,41 +81,16 @@ module.exports = function (passport) {
   );
 
   router.use("/activate", function (req, res) {
-    console.log('activate')
-    // let errors = [];
-    var body = req.body;
-    email = body.email;
+    const body = req.body;
+    const email = body.email;
     User.findOne({ email: email }, function (err, doc) {
       if (doc) {
-        console.log('user found')
-        var newCode = mail.SendCodeToUser(email);
-        Status.findOne({ email: email }, function (err, doc) {
-          if (doc) {
-            console.log('status found')
-            doc.code = newCode;
-            doc.save(function (err, status) {
-              if (err) {
-                req.flash('message', 'Could not find the email.')
-              }
-              else {
-                req.flash('message', 'Code has been sent to your email.')
-              }
-            })
-            res.render("confirmRegister", {
-              title: "Log Tracker | Confirm Register",
-              email: email,
-            })
-          }
-          else {
-            console.log('cant find user')
-            res.redirect("/signup")
-            req.flash('message', 'Could not find the email.')
-          }
-        })
+        doc.activateStatus = true;
+        doc.save();
+        res.json({"message": `Activated user <${email}>`})
       }
       else {
-        req.flash('message', 'Could not find the email. Check if email is correct.')
-        res.redirect("/")
+        res.json({"message": "Email doesn't exist. Check if the email is correct."})
       }
     }
     )
