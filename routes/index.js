@@ -73,19 +73,6 @@ router.get("/dashboard", loggedin, function (req, res, next) {
 
 });
 
-// Get confirmation page
-router.get("/confirmregister", function (req, res, next) {
-  res.render("confirmregister", {
-    title: "Log Tracker | Confirm Register",
-  })
-}); 
-
-router.get("/activate", function (req, res, next) {
-  res.render("activateEmail", {
-    title: "Log Tracker | Activate Email",
-  })
-}); 
-
 /* GET home page. */
 router.get("/", ensureAuth, function (req, res, next) {
   res.render("index", {
@@ -136,8 +123,6 @@ router.get("/student/eachProject/:pId", loggedin, function (req, res, next) {
     }
   });
 });
-
-
 
 /* GET Student Minutes */
 router.get(
@@ -203,8 +188,6 @@ router.get(
   }
 );
 
-
-
 router.get(
   "/admin/editTeam/:pId",
   loggedin,
@@ -259,9 +242,6 @@ router.get(
 
       }
     });
-
-
-
   }
 );
 
@@ -304,14 +284,6 @@ router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
         }
       });
     }
-  });
-});
-
-/* GET signup page. */
-router.use("/signup", function (req, res, next) {  //!loggedin, 
-  res.render("signup", {
-    title: "Log Tracker | Sign Up",
-    message: req.flash('message')
   });
 });
 

@@ -33,10 +33,6 @@ module.exports = function (passport) {
             )
 
           if (user.activateStatus == false) {
-            // res.render("confirmregister", {
-            //   title: "Log Tracker | Confirm Register",
-            //   email: email,
-            // })
             return done(null, false, req.flash("message", "Email Not Activated."))
           }
           //return successful user in req.user or in req.session.passport.user

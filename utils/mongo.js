@@ -1,16 +1,17 @@
+const config = require("../utils/config")
 const mongoose = require("mongoose");
 
 const Faculty = require("../models/Faculty");
 
 const fs = require("fs");
-const facultiesData = fs.readFileSync("./config/faculties.json");
+const facultiesData = fs.readFileSync("./utils/faculties.json");
 const faculties = JSON.parse(facultiesData);
 
 //Connect Database
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.MONGODB_URI || "mongodb://localhost:27017/logtracker",
+      config.MONGODB_URI,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
