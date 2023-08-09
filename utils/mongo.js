@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Faculty = require("../models/Faculty");
 
 const fs = require("fs");
-const facultiesData = fs.readFileSync("./config/faculties.json");
+const facultiesData = fs.readFileSync("./utils/faculties.json");
 const faculties = JSON.parse(facultiesData);
 
 //Connect Database
