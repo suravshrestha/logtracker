@@ -18,14 +18,13 @@ const transporter = nodemailer.createTransport({
 
 
 async function send_email(to, code) {
-    let info = await transporter.sendMail({
+    await transporter.sendMail({
         from: `"Log Tracker" <${SMTP_EMAIL}>`,
         to: to.toString(),
         subject: "Log Tracker Verification Code",
         text: `Your code is: ${code}`,
         html: `Your code is: <b>${code}</b>`,
     });
-    console.log("Message sent: %s", info.messageId);
 }
 
 function createCode() {
