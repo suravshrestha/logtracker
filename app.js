@@ -1,4 +1,4 @@
-require("dotenv").config();
+const config = require("./utils/config");
 
 var createError = require("http-errors");
 var express = require("express");
@@ -43,11 +43,11 @@ app.use(express.static(path.join(__dirname, "public")));
 //Sessions
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: config.SECRET,
     saveUninitialized: false,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/logtracker",
+      mongoUrl: config.MONGODB_URI,
     }),
   })
 );
