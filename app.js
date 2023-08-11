@@ -1,4 +1,4 @@
-require("dotenv").config();
+const config = require("./utils/config");
 
 var createError = require("http-errors");
 var express = require("express");
@@ -6,7 +6,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
-var connectDB = require("./config/mongo");
+var connectDB = require("./utils/mongo");
 var flash = require("connect-flash");
 var session = require("express-session");
 var mongoose = require("mongoose");
@@ -14,7 +14,7 @@ var MongoStore = require("connect-mongo");
 var passport = require("passport");
 
 //Passport configs
-require("./config/passport")(passport);
+require("./utils/passport")(passport);
 
 //Load configs
 connectDB();
@@ -43,11 +43,11 @@ app.use(express.static(path.join(__dirname, "public")));
 //Sessions
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: config.SECRET,
     saveUninitialized: false,
     resave: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/logtracker",
+      mongoUrl: config.MONGODB_URI,
     }),
   })
 );

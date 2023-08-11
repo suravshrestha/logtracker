@@ -1,30 +1,30 @@
+const config = require('../utils/config');
 const nodemailer = require('nodemailer');
 
-const smtpEmail = process.env.SMTP_EMAIL
-const smtpPassword = process.env.SMTP_PASSWORD
-const smtpServer = process.env.SMTP_SERVER || "smtp.ethereal.email"
-const smtpPort = process.env.SMTP_PORT || 587
+const SMTP_SERVER = config.SMTP_SERVER
+const SMTP_PORT = config.SMTP_PORT
+const SMTP_EMAIL = config.SMTP_EMAIL
+const SMTP_PASSWORD = config.SMTP_PASSWORD
 
 
 const transporter = nodemailer.createTransport({
-    host: smtpServer,
-    port: parseInt(smtpPort),
+    host: SMTP_SERVER,
+    port: parseInt(SMTP_PORT),
     auth: {
-        user: smtpEmail,
-        pass: smtpPassword
+        user: SMTP_EMAIL,
+        pass: SMTP_PASSWORD
     }
 });
 
 
 async function send_email(to, code) {
-    let info = await transporter.sendMail({
-        from: `"Log Tracker" <${smtpEmail}>`,
+    await transporter.sendMail({
+        from: `"Log Tracker" <${SMTP_EMAIL}>`,
         to: to.toString(),
         subject: "Log Tracker Verification Code",
         text: `Your code is: ${code}`,
         html: `Your code is: <b>${code}</b>`,
     });
-    console.log("Message sent: %s", info.messageId);
 }
 
 function createCode() {

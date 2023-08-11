@@ -2,71 +2,77 @@ var express = require("express");
 var router = express.Router();
 var User = require("../models/User");
 var Status = require("../models/Status");
-var mail = require('../shared/Email');
-
-
+var mail = require("../shared/Email");
 
 module.exports = function (passport) {
-  router.post("/signup", function (req, res) {
-    let errors = [];
+  router.post("/signup", async (req, res) => {
+    try {
+      const { name, email, username, password, userstatus, level } = req.body;
 
-    var body = req.body,
-      email = body.email,
-      emailUser = email,
-      username = body.username,
-      password = body.password,
-      status = body.userstatus;
-    level = body.level
+      if (!name || !username || !password || !email) {
+        return res
+          .status(400)
+          .json({ error: "Please fill in all required fields." });
+      }
 
-    if (!username || !password || !email) {
-      errors.push({ msg: "Please fill in all fields" });
+      if (password.length < 8) {
+        return res
+          .status(400)
+          .json({ error: "Password must be at least 8 characters long." });
+      }
+
+      const emailExists = await User.findOne({ email });
+
+      if (emailExists) {
+        return res.status(400).json({
+          error: "This email is already registered. Please log in to continue.",
+        });
+      }
+
+      const usernameExists = await User.findOne({ username });
+
+      if (usernameExists) {
+        return res.status(400).json({
+          error:
+            "This username is already registered. Please log in to continue.",
+        });
+      }
+
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.edu\.np$/;
+
+      if (!emailPattern.test(email)) {
+        return res.status(400).json({
+          error: "Please provide a valid email address with domain 'edu.np'.",
+        });
+      }
+
+      const code = mail.SendCodeToUser(email);
+
+      const regCode = new Status();
+      regCode.email = email;
+      regCode.code = code;
+
+      const newUser = new User();
+      newUser.name = name;
+      newUser.email = email;
+      newUser.code = code;
+      newUser.username = username;
+      newUser.password = newUser.hashPassword(password);
+      newUser.userstatus = userstatus;
+      newUser.level = level;
+
+      await Promise.all([regCode.save(), newUser.save()]);
+
+      res
+        .status(201)
+        .json({ message: "You have been successfully registered!" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        error:
+          "An error occurred while processing your request. Please try again later.",
+      });
     }
-
-    User.findOne({ email: email }, function (err, doc) {
-      if (err) {
-        req.flash('message', 'Could Not Add You !! DataBase may be Down !')
-      }
-      else {
-
-        if (doc) {
-          req.flash('message', 'Email is already Registered!\n Please login to continue!')
-          res.redirect('/') //if user with same username already exist
-        } else {
-          var code = mail.SendCodeToUser(email);
-          var regCode = new Status();
-          regCode.email = email;
-          regCode.code = code;
-          var record = new User();
-          record.email = email;
-          record.code = code;
-          record.username = username;
-          record.password = record.hashPassword(password); //access method
-          record.userstatus = status;
-          record.level = level
-
-          regCode.save(function (err, status) {
-            //Save to database
-            if (err) {
-              console.log(err)
-              req.flash('message', 'Error Occurred while adding the code')
-            } else {
-              req.flash('message', 'You are successfully added!')
-            }
-          });
-          record.save(function (err, user) {
-            //Save to database
-            if (err) {
-              console.log(err)
-              req.flash('message', 'Error Occurred while adding you')
-              // res.status(500).send("Database error occurred");
-            } else {
-              // res.render('/admin')
-              req.flash('message', 'You are successfully added!')
-            }
-          });
-        }
-      }
-    });
   });
 
   // For Login using local strategy
@@ -77,7 +83,6 @@ module.exports = function (passport) {
       successRedirect: "/dashboard",
       failureFlash: true,
     })
-
   );
 
   router.use("/activate", function (req, res) {
@@ -87,60 +92,54 @@ module.exports = function (passport) {
       if (doc) {
         doc.activateStatus = true;
         doc.save();
-        res.json({"message": `Activated user <${email}>`})
+        res.json({ message: `Activated user <${email}>` });
+      } else {
+        res.json({
+          message: "Email doesn't exist. Check if the email is correct.",
+        });
       }
-      else {
-        res.json({"message": "Email doesn't exist. Check if the email is correct."})
-      }
-    }
-    )
-  })
-
+    });
+  });
 
   router.use("/check", function (req, res) {
-    console.log('check')
+    console.log("check");
     let errors = [];
     var body = req.body;
     email = body.email;
-    console.log(body)
+    console.log(body);
     code = body.confirmCode;
     if (!email || !code) {
       errors.push({ msg: "Please fill in all fields" });
     }
     Status.findOne({ email: email }, function (err, doc) {
-      console.log('status found')
+      console.log("status found");
       if (doc) {
         if (doc.code == code) {
-          res.redirect('/');
+          res.redirect("/");
           User.findOne({ email: email }, function (err, doc) {
             if (doc) {
               doc.activateStatus = true;
               doc.save(function (err, user) {
                 if (err) {
-                  console.log(err)
-                  req.flash('message', 'Successful')
+                  console.log(err);
+                  req.flash("message", "Successful");
                 } else {
-                  req.flash('message', 'Unsuccessful')
+                  req.flash("message", "Unsuccessful");
                 }
-              }
-              )
+              });
+            } else {
+              req.flash("message", "Unsuccessful");
             }
-            else {
-              req.flash('message', 'Unsuccessful')
-            }
-          })
+          });
+        } else {
+          req.flash("message", "Wrong Code");
+          res.redirect("/");
         }
-        else {
-          req.flash('message', 'Wrong Code')
-          res.redirect('/')
-        }
+      } else {
+        req.flash("message", "Please check your Email");
       }
-      else {
-        req.flash('message', 'Please check your Email')
-      }
-    })
+    });
   });
 
-
   return router;
-}
+};
