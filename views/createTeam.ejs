@@ -146,7 +146,7 @@
                 <% if( Array.isArray(users) ) { %> <%users.forEach( function(
                 users ){ %> <% if (users.userstatus=="teacher" && users.email) {
                 %>
-                <option><%= users.username%>:<%= users.email %></option>
+                <option><%= users.name%> (<%= users.username %>)</option>
                 <% } %> <%})}%>
               </datalist>
 
@@ -169,7 +169,7 @@
                 <% if( Array.isArray(users) ) { %> <%users.forEach( function(
                 users ){ %> <% if (users.userstatus=="student" &&
                 users.level=="bachelors" && users.email) { %>
-                <option><%= users.username%>:<%= users.email%></option>
+                <option><%= users.name%> (<%= users.username %>)</option>
                 <% } %> <%})}%>
               </datalist>
               <!-- <input type="text" id="newStud_1" name="std1"/> -->
@@ -196,7 +196,7 @@
                 <% if( Array.isArray(users) ) { %> <%users.forEach( function(
                 users ){ %> <% if (users.userstatus=="student" &&
                 users.level=="masters" && users.email) { %>
-                <option><%= users.username%>:<%= users.email%></option>
+                <option><%= users.name%> (<%= users.username %>)</option>
                 <% } %> <%})}%>
               </datalist>
               <input class="addStudMaster changeBtn" type="button" value="+" />

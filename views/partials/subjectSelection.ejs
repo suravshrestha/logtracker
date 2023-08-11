@@ -9,10 +9,10 @@ faculty.length; i++){%> <%for (var j = 0; j < 8; j++){%>
 <% if( Array.isArray(users) ) { %> 
   <%users.forEach( function(users ){ %> 
     <% if (users.userstatus=="student" && users.level=="bachelors" && users.email) { %>
-          <% bachelorusers.push(users.username+":"+users.email) %>
+          <% bachelorusers.push(users.name + " (" + users.username + ")") %>
     <% } %> 
     <% if (users.userstatus=="student" && users.level=="masters" && users.email) { %>
-          <% masterusers.push(users.username+":"+users.email) %>
+          <% masterusers.push(users.name + " (" + users.username + ")") %>
     <% } %>
   <%})}%>
 <script>
@@ -81,8 +81,8 @@ faculty.length; i++){%> <%for (var j = 0; j < 8; j++){%>
       var all = all.split(",");
  
       const studentsByBatchAndFaculty = all.filter((student) =>
-        student.split(":")[1].startsWith(batch) &&
-        student.split(":")[1].slice(3, 6) === facultyCode
+        student.split("(")[1].startsWith(batch) &&
+        student.split("(")[1].slice(3, 6) === facultyCode
       );
 
       for (const student of studentsByBatchAndFaculty) {

@@ -311,7 +311,7 @@ router.get("/admin/createTeam", loggedin, function (req, res, next) {
             users: usr,
             faculty: faculty,
             title: "Create Team | Log Tracker",
-            firstname: req.user.username.split(" ")[0],
+            name: req.user.name,
           });
         }
       });
