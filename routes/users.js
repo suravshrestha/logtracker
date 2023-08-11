@@ -3,6 +3,7 @@ var router = express.Router();
 const axios = require("axios");
 const querystring = require("querystring");
 const User = require("../models/User");
+
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
   const users = await User.find({});
@@ -13,8 +14,8 @@ router.get("/", async function (req, res, next) {
 module.exports = router;
 
 router.get("/sync", async (req, res, next) => {
-  batches = ["075", "076", "077", "078"];
-  programmes = [
+  const batches = ["075", "076", "077", "078"];
+  const programmes = [
     {
       prog: "BCT",
       group: ["A", "B", "C", "D"],
@@ -45,17 +46,11 @@ router.get("/sync", async (req, res, next) => {
     },
   ];
 
-  for (let i = 0; i < batches.length; i++) {
-    const currentBatch = batches[i];
-    for (let j = 0; j < programmes.length; j++) {
-      const currentProgram = programmes[j];
-      for (let k = 0; k < currentProgram.group.length; k++) {
+  for (const batch of batches) {
+    for (const programme of programmes) {
+      for (const group of programme.group) {
         try {
-          const formData = {
-            prog: currentProgram.prog,
-            batch: currentBatch,
-            group: currentProgram.group[k],
-          };
+          const formData = { prog: programme.prog, batch, group };
 
           const response = await axios.post(
             "http://assmnt.pcampus.edu.np/api/students/",
@@ -67,12 +62,9 @@ router.get("/sync", async (req, res, next) => {
           // password: 077bct073
           // email: 077bct073.samip@pcampus.edu.np
           // userstatus: student
-          for (let u = 0; u < response.data.length; u++) {
-            const name = response.data[u][3];
-            const username =
-              response.data[u][0] +
-              response.data[u][1].toLowerCase() +
-              response.data[u][2];
+          for (const user of response.data) {
+            const name = user[3];
+            const username = user[0] + user[1].toLowerCase() + user[2];
             const email =
               username +
               "." +
@@ -82,26 +74,26 @@ router.get("/sync", async (req, res, next) => {
             const usernameExists = await User.findOne({ username });
 
             if (!usernameExists) {
-              const newUser = new User();
-              newUser.name = name;
-              newUser.username = username;
-              newUser.email = email;
-              newUser.password = username;
-              newUser.userstatus = "student";
+              const newUser = new User({
+                name,
+                username,
+                email,
+                password: username,
+                userstatus: "student",
+                level: "bachelors",
+              });
 
               await newUser.save();
-              // console.log(email);
             }
           }
-          // console.log("Response:", response.data);
-          console.log("Success");
         } catch (error) {
-          console.error("Error:", error);
-          res.status(500).send("An error occurred");
+          return res
+            .status(500)
+            .send({ error: "An unexpected error occurred." });
         }
       }
     }
   }
 
-  console.log("here");
+  res.status(200).send({ message: "Successfully synced students database." });
 });
