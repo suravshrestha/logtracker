@@ -24,6 +24,7 @@ faculty.length; i++){%> <%for (var j = 0; j < 8; j++){%>
       .options[document.getElementById("faculty").selectedIndex].getAttribute(
         "code"
       );
+
     var selectSubs = document.getElementById("subjects");
     console.log(selectSubs.value);
     console.log(currLevel);
@@ -32,12 +33,13 @@ faculty.length; i++){%> <%for (var j = 0; j < 8; j++){%>
 
     if (currLevel === "masters") {
       document.getElementById("faculty-select").style.display = "none";
+      document.getElementById("batch-select").style.display = "none";
       document.getElementById("sems-select").style.display = "none";
       document.getElementById("subject-select").style.display = "none";
       // document.getElementById("bachelors-std").style.display = "none";
       document.getElementById("masters-std").style.display = "none";
 
-      students.innerHTML=""
+      students.innerHTML = "";
 
       var all = "<%=masterusers%>";
       var all = all.split(",");
@@ -48,30 +50,52 @@ faculty.length; i++){%> <%for (var j = 0; j < 8; j++){%>
           students.appendChild(option);
         }
       }
-    
-      
     } else {
       document.getElementById("faculty-select").style.display = "";
+      document.getElementById("batch-select").style.display = "";
       document.getElementById("sems-select").style.display = "";
       document.getElementById("subject-select").style.display = "";
       document.getElementById("bachelors-std").style.display = "";
       document.getElementById("masters-std").style.display = "none";
-      students.innerHTML=""
+      students.innerHTML = "";
 
+      const batchSelectEl = document.getElementById("batch");
+      const batch = batchSelectEl.options[batchSelectEl.selectedIndex].value.trim();
+
+      const facultySelectEl = document.getElementById("faculty");
+      const faculty = facultySelectEl.options[facultySelectEl.selectedIndex].value.trim();
+
+      const facultyCodes = {
+        "Aerospace Engineering": "bae",
+        "Computer Engineering": "bct",
+        "Electronics and Communication Engineering": "bex",
+        "Civil Engineering": "bce",
+        "Electrical Engineering": "bel",
+        "Mechanical Engineering": "bme",
+        "Electronics, communication and Information Engineering": "bei",
+      };
+
+      const facultyCode = facultyCodes[faculty];
+      
       var all = "<%=bachelorusers%>";
       var all = all.split(",");
-      console.log(all)
-      for (var i = 0; i < all.length; i++) {
+ 
+      const studentsByBatchAndFaculty = all.filter((student) =>
+        student.split(":")[1].startsWith(batch) &&
+        student.split(":")[1].slice(3, 6) === facultyCode
+      );
+
+      for (const student of studentsByBatchAndFaculty) {
         var option = document.createElement("option");
-        option.value = all[i];
+        option.value = student;
         if (option.value !== "") {
           students.appendChild(option);
         }
       }
     }
     if (
-      currSem !== "0" &&
-      currFaculty !== "null" &&
+      currSem !== "unselected" &&
+      currFaculty !== null &&
       currLevel === "bachelors"
     ) {
       //var selectSubs = document.getElementById("subjects");

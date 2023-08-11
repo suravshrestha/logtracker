@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+
 var User = require("../models/User");
 var Minute = require("../models/Minute");
 var Comment = require("../models/Comment");
@@ -7,8 +8,8 @@ var Project = require("../models/Project");
 var Event = require("../models/Event");
 var Faculty = require("../models/Faculty");
 var File = require("../models/File")
-var LoginDetail = require("./auth")
 var { loggedin, ensureAuth } = require("../middleware/ensureLogin");
+const batches = require("../utils/batches");
 
 /* GET Dashboard. */
 router.get("/dashboard", loggedin, function (req, res, next) {
@@ -306,6 +307,7 @@ router.get("/admin/createTeam", loggedin, function (req, res, next) {
         } else {
           res.render("createTeam", {
             message: req.flash('message'),
+            batches,
             users: usr,
             faculty: faculty,
             title: "Create Team | Log Tracker",

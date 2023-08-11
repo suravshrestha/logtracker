@@ -2,7 +2,9 @@ var express = require("express");
 var router = express.Router();
 const axios = require("axios");
 const querystring = require("querystring");
+
 const User = require("../models/User");
+const batches = require("../utils/batches")
 
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
@@ -11,10 +13,7 @@ router.get("/", async function (req, res, next) {
   res.status(200).send({ count: users.length, users });
 });
 
-module.exports = router;
-
 router.get("/sync", async (req, res, next) => {
-  const batches = ["075", "076", "077", "078"];
   const programmes = [
     {
       prog: "BCT",
@@ -97,3 +96,5 @@ router.get("/sync", async (req, res, next) => {
 
   res.status(200).send({ message: "Successfully synced students database." });
 });
+
+module.exports = router;
