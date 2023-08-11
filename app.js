@@ -27,7 +27,6 @@ var pwdResetRouter = require("./routes/pwdReset");
 var minuteRouter = require("./routes/minute");
 var projectRouter = require("./routes/project");
 var facultyRouter = require("./routes/faculty");
-var syncStudentRouter = require("./routes/syncStudent");
 
 var app = express();
 
