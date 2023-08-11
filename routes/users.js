@@ -4,8 +4,10 @@ const axios = require("axios");
 const querystring = require("querystring");
 const User = require("../models/User");
 /* GET users listing. */
-router.get("/", function (req, res, next) {
-  res.send("respond with a resource");
+router.get("/", async function (req, res, next) {
+  const users = await User.find({});
+
+  res.status(200).send({ count: users.length, users });
 });
 
 module.exports = router;
