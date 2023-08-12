@@ -40,6 +40,8 @@ const connectDB = async () => {
     admin.password = await admin.hashPassword(config.ADMIN_PASSWORD);
 
     await admin.save();
+
+    console.log("Admin created");
   } catch (err) {
     console.error(err);
     process.exit(1);

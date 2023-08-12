@@ -4,7 +4,7 @@ const axios = require("axios");
 const querystring = require("querystring");
 
 const User = require("../models/User");
-const batches = require("../utils/batches")
+const batches = require("../utils/batches");
 
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
@@ -45,10 +45,12 @@ router.get("/sync", async (req, res, next) => {
     },
   ];
 
-  for (const batch of batches) {
-    for (const programme of programmes) {
-      for (const group of programme.group) {
-        try {
+  const students = [];
+
+  try {
+    for (const batch of batches) {
+      for (const programme of programmes) {
+        for (const group of programme.group) {
           const formData = { prog: programme.prog, batch, group };
 
           const response = await axios.post(
@@ -73,29 +75,31 @@ router.get("/sync", async (req, res, next) => {
             const usernameExists = await User.findOne({ username });
 
             if (!usernameExists) {
-              const newUser = new User({
+              const user = {
                 name,
                 username,
                 email,
+                password: new User().hashPassword(username),
                 userstatus: "student",
                 level: "bachelors",
-              });
+              };
 
-              newUser.password = newUser.hashPassword(username);
-
-              await newUser.save();
+              students.push(user);
             }
           }
-        } catch (error) {
-          return res
-            .status(500)
-            .send({ error: "An unexpected error occurred." });
         }
       }
     }
-  }
 
-  res.status(200).send({ message: "Successfully synced students database." });
+    if (students.length > 0) {
+      await User.insertMany(students);
+    }
+
+    res.status(200).send({ message: "Successfully synced students database." });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: "An unexpected error occurred." });
+  }
 });
 
 module.exports = router;
