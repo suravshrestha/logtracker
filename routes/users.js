@@ -77,10 +77,11 @@ router.get("/sync", async (req, res, next) => {
                 name,
                 username,
                 email,
-                password: username,
                 userstatus: "student",
                 level: "bachelors",
               });
+
+              newUser.password = newUser.hashPassword(username);
 
               await newUser.save();
             }
