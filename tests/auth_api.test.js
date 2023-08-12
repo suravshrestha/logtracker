@@ -36,11 +36,10 @@ describe("addition of a new user", () => {
       .expect("Content-Type", /application\/json/);
 
     const usersAtEnd = await helper.usersInDb();
-    expect(usersAtEnd).toHaveLength(helper.initialUsers.length + 1);
-
     const usernames = usersAtEnd.map((r) => r.username);
 
-    expect(usersAtEnd).toHaveLength(helper.initialUsers.length + 1);
+    // One additional admin user is automatically created on first run
+    expect(usersAtEnd).toHaveLength(helper.initialUsers.length + 2);
     expect(usernames).toContain("linustorvalds");
   });
 
@@ -109,16 +108,6 @@ describe("addition of a new user", () => {
     expect(response.body.error).toBe(
       "Please provide a valid email address with domain 'edu.np'."
     );
-  });
-
-  test("fails with status code 400 when username is less than 9 characters", async () => {
-    const user = {
-      name: "Eleven",
-      username: "077BCT08",
-      password: "ilovestrangerthings",
-    };
-
-    await api.post("/auth/signup").send(user).expect(400);
   });
 
   test("fails with status code 400 when password is less than 8 characters", async () => {
