@@ -5,6 +5,7 @@ const querystring = require("querystring");
 
 const User = require("../models/User");
 const batches = require("../utils/batches");
+const programs = require("../utils/programs");
 
 /* GET users listing. */
 router.get("/", async function (req, res, next) {
@@ -14,44 +15,13 @@ router.get("/", async function (req, res, next) {
 });
 
 router.get("/sync", async (req, res, next) => {
-  const programmes = [
-    {
-      prog: "BCT",
-      group: ["A", "B", "C", "D"],
-    },
-    {
-      prog: "BEL",
-      group: ["A", "B"],
-    },
-    {
-      prog: "BAS",
-      group: ["A", "B"],
-    },
-    {
-      prog: "BCE",
-      group: ["A", "B", "C", "D", "E", "F", "G", "H"],
-    },
-    {
-      prog: "BAR",
-      group: ["A", "B"],
-    },
-    {
-      prog: "BME",
-      group: ["A", "B"],
-    },
-    {
-      prog: "BEI",
-      group: ["A", "B"],
-    },
-  ];
-
   const students = [];
 
   try {
     for (const batch of batches) {
-      for (const programme of programmes) {
-        for (const group of programme.group) {
-          const formData = { prog: programme.prog, batch, group };
+      for (const program of programs) {
+        for (const group of program.groups) {
+          const formData = { prog: program.code, batch, group };
 
           const response = await axios.post(
             "http://assmnt.pcampus.edu.np/api/students/",
