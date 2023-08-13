@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www --ext js,ejs,json",
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/www --ext js,ejs,json",
     "test": "cross-env NODE_ENV=test jest --verbose --watch --runInBand --detectOpenHandles"
   },
   "dependencies": {
