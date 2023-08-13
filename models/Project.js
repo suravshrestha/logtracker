@@ -13,7 +13,6 @@ var ProjectSchema = new mongoose.Schema({
   },
   teamname: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
