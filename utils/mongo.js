@@ -19,7 +19,7 @@ const connectDB = async () => {
     });
 
     Faculty.countDocuments({}, async (err, count) => {
-      if (count == 0) {
+      if (count === 0) {
         Faculty.insertMany(faculties);
       }
     });
