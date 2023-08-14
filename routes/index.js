@@ -10,6 +10,7 @@ var Faculty = require("../models/Faculty");
 var File = require("../models/File")
 var { loggedin, ensureAuth } = require("../middleware/ensureLogin");
 const batches = require("../utils/batches");
+const programs = require("../utils/programs");
 
 /* GET Dashboard. */
 router.get("/dashboard", loggedin, function (req, res, next) {
@@ -321,6 +322,19 @@ router.get("/admin/createTeam", loggedin, function (req, res, next) {
     res.redirect("/dashboard");
   }
 
+});
+
+router.get("/admin/sync-students", loggedin, function (req, res, next) {
+  if (req.user.userstatus !== "admin") {
+    return res.redirect("/dashboard");
+  }
+
+  res.render("syncStudents", {
+    title: "Sync Students | Log Tracker",
+    message: req.flash("message"),
+    batches,
+    programs,
+  });
 });
 
 /* GET Admin Each Project */

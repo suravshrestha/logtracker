@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= title%>
+  </title>
+  <style>
+    option {
+      border-color: royalblue;
+      border-width: 2px;
+    }
+  </style>
+</head>
+
+<body style="background-color: #1f3750">
+  <%- include('partials/adminHeader') %>
+    <div class="container">
+      <h3>Sync Students</h3>
+      <div class="card" style="position: relative">
+        <form action="/users/sync" class="login-form create-team" method="post" autocomplete="off">
+          <div class="form-group options" id="batch-select">
+            <div>
+              <label for="batches">Batches</label>
+              <p>:</p>
+
+              <div style="display: block;">
+                <% batches.forEach(batch=> { %>
+                  <input class="batch-checkbox" type="checkbox" id="<%= batch %>" name="<%= batch %>"
+                    style="transform: scale(1.25); -ms-transform: scale(1.25); -webkit-transform: scale(1.25); padding: 10px;" />
+                  <label for="<%= batch %>" style="display: revert;">
+                    <%= batch %>
+                  </label><br />
+                  <% }) %>
+
+                    <input type="checkbox" id="batches-all" name="batches-all" onclick="selectAllBatches()"
+                      style="transform: scale(1.25); -ms-transform: scale(1.25); -webkit-transform: scale(1.25); padding: 10px;" />
+                    <label for="batches-all">All</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group options" id="faculty-select">
+            <div>
+              <label for="faculty">Programs</label>
+              <p>:</p>
+
+              <div style="display: block;">
+                <% programs.forEach(program=> { %>
+                  <input class="program-checkbox" type="checkbox" id="<%= program.code %>" name="<%= program.code %>"
+                    style="transform: scale(1.25); -ms-transform: scale(1.25); -webkit-transform: scale(1.25); padding: 10px;" />
+                  <label for="<%= program.code %>" style="display: revert;">
+                    <%= program.name %>
+                  </label><br />
+                  <% }) %>
+
+                    <input type="checkbox" id="programs-all" name="programs-all" onclick="selectAllPrograms()"
+                      style="transform: scale(1.25); -ms-transform: scale(1.25); -webkit-transform: scale(1.25); padding: 10px;" />
+                    <label for="programs-all">All</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary logout-btn" id="sync-students">
+            Sync
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function selectAllBatches() {
+        const selectAllBatchesCheckbox = document.getElementById("batches-all");
+
+        // Get all checkbox elements
+        let checkboxes = document.getElementsByClassName('batch-checkbox');
+
+        // Loop through the checkboxes and set the 'checked' property to true
+        for (let i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].checked = selectAllBatchesCheckbox.checked;
+        }
+      }
+
+      function selectAllPrograms() {
+        const selectAllProgramsCheckbox = document.getElementById("programs-all");
+
+        // Get all checkbox elements
+        let checkboxes = document.getElementsByClassName('program-checkbox');
+
+        // Loop through the checkboxes and set the 'checked' property to true
+        for (let i = 0; i < checkboxes.length; i++) {
+          checkboxes[i].checked = selectAllProgramsCheckbox.checked;
+        }
+      }
+    </script>
+
+    <script src="/javascripts/syncStudent.js"></script>
+</body>
+</html>
