@@ -2,20 +2,26 @@
 <link rel="stylesheet" href="/stylesheets/adminView.css" />
 <link rel="stylesheet" href="/stylesheets/login.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-  crossorigin="anonymous"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
 <header>
   <nav class="navbar sticky-top">
     <a class="navbar-brand" href="/dashboard">ADMIN PANEL</a>
+    <!--admin lai team create garna ra defense call garna-->
+    <div>
+      <a type="button" class="btn btn-primary logout-btn" href="/admin/createTeam">
+        Create New Team
+      </a>
+      <a type="button" class="btn btn-primary logout-btn" href="/admin/defenseCall">
+        Defense Call
+      </a>
+      <a class="btn btn-primary logout-btn" href="/admin/sync-students">
+        Sync Students
+      </a>
+    </div>
+
     <div class="header-avatar">
       <a href="/logout" class="btn btn-primary logout-btn">LOG OUT</a>
       <img src="/assets/admin-logo.png" />

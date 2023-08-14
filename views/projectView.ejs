@@ -13,19 +13,6 @@
           <% } else { %> <%- include('partials/adminHeader') %>
               <% } %>
                 <div class="student-dashboard container">
-                  <!--admin lai team create garna ra defense call garna-->
-                  <%if (userstatus=="admin" ){%>
-                    <a type="button" class="btn btn-primary logout-btn admin" href="/admin/createTeam">
-                      Create New Team
-                    </a>
-                    <a type="button" class="btn btn-primary logout-btn admin" href="/admin/defenseCall">
-                      Defense Call
-                    </a>
-                    <a class="btn btn-primary logout-btn admin" href="/admin/sync-students">
-                      Sync Students
-                    </a>
-                    <%}%>
-
                       <!-- ADMIN ra teacher lai masters bachelors button dekhauna-->
                       <%if (userstatus=="admin" || userstatus=="teacher" ){%>
                         <div class="buttons-div row">
