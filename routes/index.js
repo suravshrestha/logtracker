@@ -38,7 +38,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
     );
   } else if (user.userstatus == "teacher") {
     Project.getProjectsbySV(
-      `${user.name} (${user.username})`,
+      `${user.name} (${user.email})`,
       function (err, projects) {
         if (err) {
           return next(err);
