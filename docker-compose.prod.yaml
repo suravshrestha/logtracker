@@ -1,0 +1,51 @@
+version: '1'
+
+services:
+  # MongoDB container
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+  # Node.js/Express container
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: logtracker
+    ports:
+      - 3000:3000
+    env_file:
+      - .env  # Load environment variables from the .env file
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  # Nginx container for reverse proxy and SSL termination
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mongodb_data:
+    driver: local
