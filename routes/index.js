@@ -31,7 +31,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
             // sem: user.level.split(':')[1],
             userstatus: user.userstatus,
             userlevel: user.level,
-            firstname: user.username.split(" ")[0],
+            firstname: user.name.split(" ")[0],
           });
         }
       }
@@ -47,7 +47,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
           projects: projects,
           // sem: user.level.split(':')[1],
           userstatus: user.userstatus,
-          firstname: user.username.split(" ")[0],
+          firstname: user.name.split(" ")[0],
         });
       }
     });
@@ -66,7 +66,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
             title: "Admin View | Log Tracker",
             userstatus: user.userstatus,
             // sem: user.level.split(':')[1],
-            firstname: user.username.split(" ")[0],
+            firstname: user.name.split(" ")[0],
           });
         }
       }
