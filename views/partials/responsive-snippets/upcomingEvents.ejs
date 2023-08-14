@@ -169,7 +169,7 @@
       <hr style="border-top: 1px solid white; margin: 10px 0px" />
       <% project.supervisor.forEach(element => { %>
         <% if (element!= null) { %>
-        <p style="margin-bottom: 10px"><%= element.split(':')[0]%></p>
+        <p style="margin-bottom: 10px"><%= element.split(' (')[0]%></p>
         <% } %>
       
         <% }) %>

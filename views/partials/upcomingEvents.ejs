@@ -142,7 +142,7 @@
   
 <% project.supervisor.forEach(element => { %>
   <% if (element!= null) { %>
-    <p style="margin-bottom: 10px"><%= element.split(':')[0]%></p>
+    <p style="margin-bottom: 10px"><%= element.split(' (')[0]%></p>
   <% } %>
   
 <% }) %>

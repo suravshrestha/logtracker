@@ -145,7 +145,7 @@
                 <% if( Array.isArray(users) ) { %> <%users.forEach( function(
                 users ){ %> <% if (users.userstatus=="teacher" && users.email) {
                 %>
-                <option><%= users.name%> (<%= users.username %>)</option>
+                <option><%= users.name%> (<%= users.email %>)</option>
                 <% } %> <%})}%>
               </datalist>
 
