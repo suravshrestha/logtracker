@@ -112,7 +112,7 @@ router.get("/student/eachProject/:pId", loggedin, function (req, res, next) {
                     title: "Student View | Each Project | Log Tracker",
                     pId: req.params.pId,
                     username: user.username,
-                    firstname: user.username.split(" ")[0],
+                    firstname: user.name.split(" ")[0],
                     userstatus: user.userstatus,
                   });
                 }
@@ -134,7 +134,7 @@ router.get(
       title: "Add Minutes | Log Tracker",
       message: req.flash("message"),
       pId: req.params.pId,
-      firstname: req.user.username.split(" ")[0],
+      firstname: req.user.name.split(" ")[0],
     });
   }
 );
@@ -147,7 +147,7 @@ router.get(
       title: "Add Approved Files | Log Tracker",
       message: req.flash("message"),
       pId: req.params.pId,
-      firstname: req.user.username.split(" ")[0],
+      firstname: req.user.name.split(" ")[0],
     });
   }
 );
@@ -163,7 +163,7 @@ router.get(
         title: "Approved Files | Log Tracker",
         message: req.flash("message"),
         pId: req.params.pId,
-        firstname: req.user.username.split(" ")[0],
+        firstname: req.user.name.split(" ")[0],
       });
     });
   }
@@ -179,7 +179,7 @@ router.get(
         minute: minute,
         title: "Edit Minutes | Log Tracker",
         pId: req.params.pId,
-        firstname: req.user.username.split(" ")[0],
+        firstname: req.user.name.split(" ")[0],
       });
     });
   }
@@ -201,7 +201,7 @@ router.get("/admin/editTeam/:pId", loggedin, function (req, res, next) {
               project: project,
               title: "Edit Team | Log Tracker",
               pId: req.params.pId,
-              firstname: req.user.username.split(" ")[0],
+              firstname: req.user.name.split(" ")[0],
             });
           });
         }
@@ -224,7 +224,7 @@ router.get("/admin/defenseCall", loggedin, function (req, res, next) {
         faculty: faculty,
         title: "Defence Call | Log Tracker",
         pId: req.params.pId,
-        firstname: req.user.username.split(" ")[0],
+        firstname: req.user.name.split(" ")[0],
       });
     }
   });
@@ -259,7 +259,7 @@ router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
                     title: "Teacher View | Each Project | Log Tracker",
                     pId: req.params.pId,
                     username: user.username,
-                    firstname: user.username.split(" ")[0],
+                    firstname: user.name.split(" ")[0],
                     userstatus: user.userstatus,
                   });
                 }
@@ -343,7 +343,7 @@ router.get("/admin/eachProject/:pId", loggedin, function (req, res, next) {
                 title: "Admin View | Each Project | Log Tracker",
                 pId: req.params.pId,
                 username: user.username,
-                firstname: user.username.split(" ")[0],
+                firstname: user.name.split(" ")[0],
                 userstatus: user.userstatus,
               });
             }
