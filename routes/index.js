@@ -356,13 +356,14 @@ router.get("/admin/eachProject/:pId", loggedin, function (req, res, next) {
 
 /* Logout Session. */
 router.get("/logout", loggedin, function (req, res, next) {
-  req.logout();
-  req.flash("message", "Logged Out Successfully");
-  res.redirect("/");
-  // res.render("index", {
-  //   title: "Log Tracker | Login",
-  //   message: req.flash('message', 'Logged Out Successfully')
-  // });
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    req.flash("message", "Logged Out Successfully");
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
