@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-var bcrypt = require('bcrypt-nodejs');   //for encrypting password with hash
+var mongoose = require("mongoose");
+var bcrypt = require("bcrypt-nodejs"); //for encrypting password with hash
 
 //Models
 var UserSchema = new mongoose.Schema({
@@ -25,7 +25,6 @@ var UserSchema = new mongoose.Schema({
   },
   level: {
     type: String,
-    
   },
   userstatus: {
     type: String,
@@ -42,18 +41,22 @@ var UserSchema = new mongoose.Schema({
   },
   resetToken: {
     type: String,
-    default: ''
-  }
-})
+    default: "",
+  },
+  firstLogin: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 //Methods to encrypt and decrypt password
 //synchronous function
-UserSchema.methods.hashPassword = function(password){
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-}
+UserSchema.methods.hashPassword = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
 
-UserSchema.methods.comparePassword = function(password, hash){
-  return bcrypt.compareSync(password, hash)
-}
+UserSchema.methods.comparePassword = function (password, hash) {
+  return bcrypt.compareSync(password, hash);
+};
 
-var User = module.exports = mongoose.model('User', UserSchema, 'users');
+var User = (module.exports = mongoose.model("User", UserSchema, "users"));

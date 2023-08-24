@@ -281,6 +281,15 @@ router.use("/forgotPassword", function (req, res, next) {
   });
 });
 
+// Change passowrd
+router.use("/change-password", function (req, res, next) {
+  // const message = "You have to change your password on your first login.";
+  res.render("changePassword", {
+    title: "Log Tracker | Change Password",
+    message: req.flash("message", ""),
+  });
+});
+
 router.get("/admin/createTeam", loggedin, function (req, res, next) {
   user = req.user;
   if (user.userstatus == "admin") {
