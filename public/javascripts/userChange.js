@@ -1,4 +1,4 @@
-$(document).ready(function (e) {
+$(document).ready(function () {
   function showView(viewName) {
     $(".view").hide();
     $("#" + viewName).show();
@@ -29,5 +29,5 @@ $(document).ready(function (e) {
       $("#bachContent").show();
       $("#thesis").hide();
     }
-  })
+  });
 });

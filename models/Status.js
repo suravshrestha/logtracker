@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
 var StatusSchema = new mongoose.Schema({
     email: {
@@ -11,6 +11,8 @@ var StatusSchema = new mongoose.Schema({
         unique: true,
         required: true,
     },
-})
+});
 
-var Status = module.exports = mongoose.model('Status', StatusSchema, 'status');
+const Status = mongoose.model("Status", StatusSchema, "status");
+
+module.exports = Status;

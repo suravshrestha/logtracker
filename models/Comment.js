@@ -1,11 +1,11 @@
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
 
 //Models
 var CommentSchema = new mongoose.Schema({
   minuteId: {
     type: mongoose.ObjectId,
-    default: 'todo',
+    default: "todo",
     required: true,
   },
   createdDate: {
@@ -19,25 +19,25 @@ var CommentSchema = new mongoose.Schema({
   },
   commentedBy: {
       type: String,
-      default: 'username',
+      default: "username",
       required: true
   }
-})
+});
 
 
-var Comment = module.exports = mongoose.model('Comment', CommentSchema, 'comments')
+var Comment = module.exports = mongoose.model("Comment", CommentSchema, "comments");
 
 module.exports.createComment = function (newComment, callback){
-    newComment.save(callback)
-}
+    newComment.save(callback);
+};
 
 module.exports.deleteComment = function (commentid, callback){
-    Comment.deleteOne({ _id: commentid }, callback)
-}
+    Comment.deleteOne({ _id: commentid }, callback);
+};
 
 module.exports.getCommentsbyMid = function (mid,callback) {
-    let query = { 
+    let query = {
         minuteId:mid
-        }
-    Comment.find(query, callback)
-  }
+        };
+    Comment.find(query, callback);
+  };

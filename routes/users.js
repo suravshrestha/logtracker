@@ -7,7 +7,7 @@ const User = require("../models/User");
 const programs = require("../utils/programs");
 
 /* GET users listing. */
-router.get("/", async function (req, res, next) {
+router.get("/", async function (req, res) {
   const users = await User.find({});
 
   res.status(200).send({ count: users.length, users });
@@ -61,7 +61,7 @@ async function syncStudentsByProgramAndBatch(programCode, batch, students) {
   }
 }
 
-router.get("/sync", async (req, res, next) => {
+router.get("/sync", async (req, res) => {
   const students = [];
 
   const queryBatches = req.query.batches ? req.query.batches.split(",") : [];

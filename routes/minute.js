@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var Minute = require("../models/Minute");
-var Comment = require("../models/Comment");
 var path = require("path");
 var fs = require("fs");
 var upload = require("../middleware/multer");
@@ -18,7 +17,7 @@ router.use("/comment", commentRouter);
 router.post(
   "/save/:pId",
   upload.array("uploadedFiles", 10),
-  (req, res, next) => {
+  (req, res) => {
     //console.log("save")
     try {
       console.log(JSON.stringify(req.body));
@@ -62,20 +61,20 @@ router.post(
       minute.description = description;
       minute.attachment = img;
       minute.createdBy = req.user.username;
-      minute.createdDate = Date.now()
-      Minute.createMinute(minute, function (err, minutes) {
+      minute.createdDate = Date.now();
+      Minute.createMinute(minute, function (err) {
         //Save to database
         if (err) {
           // res.status(500).send(err);
-          req.flash('message', "Error Saving Minute")
+          req.flash("message", "Error Saving Minute");
           res.redirect("/student/eachProject/" + pId);
         } else {
-          req.flash('message', "Minute Added")
+          req.flash("message", "Minute Added");
           res.redirect("/student/eachProject/" + pId);
         }
       });
     } catch (err) {
-      req.flash('message', "Unexpected error".concat(err))
+      req.flash("message", "Unexpected error".concat(err));
       res.redirect("/student/eachProject/" + pId);
       // res.render(err);
       // res.redirect("/student/eachProject");
@@ -91,11 +90,11 @@ var ID = function () {
   return "_" + Math.random().toString(36).substr(2, 9);
 };
 
-router.use("/getall/:pId", loggedin, (req, res, next) => {
+router.use("/getall/:pId", loggedin, (req, res) => {
   res.redirect("/student/eachProject/" + req.params.pId);
 });
 
-router.get("/download", function (req, response) {
+router.get("/download", function (req, response, next) {
   console.log(req.query);
   Minute.findOne(
     {
@@ -106,7 +105,7 @@ router.get("/download", function (req, response) {
         return next(err);
       } else {
         minute.attachment.forEach((element) => {
-          if (element.fileId == req.query.data) {
+          if (element.fileId === req.query.data) {
             let fileType = element.docs.contentType;
             let fileName = element.name.substring(
               element.name.indexOf("-") + 1
@@ -131,7 +130,7 @@ router.get("/download", function (req, response) {
   );
 });
 
-router.post("/edit/:pId/:mId", (req, res, next) => {
+router.post("/edit/:pId/:mId", (req, res) => {
   try {
     console.log(JSON.stringify(req.body));
     let errors = [];
@@ -152,19 +151,19 @@ router.post("/edit/:pId/:mId", (req, res, next) => {
     minute.updatedBy = req.user.username;
     console.log(minute);
 
-    Minute.updateMinute(req.params.mId, minute, function (err, minutes) {
+    Minute.updateMinute(req.params.mId, minute, function (err) {
       //Save to database
       if (err) {
         // res.status(500).send(err);
-        req.flash('message', "Error Editing Minute :".concat(err))
+        req.flash("message", "Error Editing Minute :".concat(err));
         res.redirect("/student/eachProject/" + pId);
       } else {
-        req.flash('message', "Minute Edited Successfully")
+        req.flash("message", "Minute Edited Successfully");
         res.redirect("/student/eachProject/".concat(pId));
       }
     });
   } catch (err) {
-    req.flash('message', "Unexpected error".concat(err))
+    req.flash("message", "Unexpected error".concat(err));
     res.redirect("/student/eachProject/" + pId);
     // res.render(err);
     // res.redirect("/student/eachProject");
@@ -173,7 +172,7 @@ router.post("/edit/:pId/:mId", (req, res, next) => {
 });
 
 router.use("/verify/:pId/:id", loggedin, (req, res, next) => {
-  Minute.verifyMinute(req.params.id, function (err, minutes) {
+  Minute.verifyMinute(req.params.id, function (err) {
     if (err) {
       return next(err);
     } else {
@@ -183,7 +182,7 @@ router.use("/verify/:pId/:id", loggedin, (req, res, next) => {
 });
 
 router.use("/unverify/:pId/:id", loggedin, (req, res, next) => {
-  Minute.unVerifyMinute(req.params.id, function (err, minutes) {
+  Minute.unVerifyMinute(req.params.id, function (err) {
     if (err) {
       return next(err);
     } else {

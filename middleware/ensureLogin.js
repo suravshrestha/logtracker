@@ -16,4 +16,4 @@ var loggedin = function (req, res, next) {
     }
   };
 
-  module.exports = { loggedin, ensureAuth}
+  module.exports = { loggedin, ensureAuth };

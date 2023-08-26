@@ -165,7 +165,6 @@ module.exports.updateProject = function (projectId, newProject, callback) {
       $set: {
         description: newProject.description,
         projectname: newProject.projectname,
-        description: newProject.description,
         supervisor: newProject.supervisor,
         team: newProject.team,
         createdBy: newProject.createdBy,

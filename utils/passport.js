@@ -18,27 +18,27 @@ module.exports = function (passport) {
       {
         passReqToCallback: true, // allows us to pass back the entire request to the callback
       },
-      function (req, email, password, done, res) {
+      function (req, email, password, done) {
         User.findOne({ email: email }, function (err, user) {
           // if there are any errors, return the error before anything else
-          if (err) return done(err)
+          if (err) return done(err);
           if (!user)
-            return done(null, false, req.flash("message", "No user found.")) // req.flash is the way to set flashdata using connect-flash
+            return done(null, false, req.flash("message", "No user found.")); // req.flash is the way to set flashdata using connect-flash
           // if the user is found but the password is wrong
           if (!user.comparePassword(password, user.password))
             return done(
               null,
               false,
               req.flash("message", "Oops! Wrong password.")
-            )
+            );
 
-          if (user.activateStatus == false) {
-            return done(null, false, req.flash("message", "Email Not Activated."))
+          if (user.activateStatus === false) {
+            return done(null, false, req.flash("message", "Email Not Activated."));
           }
           //return successful user in req.user or in req.session.passport.user
-          return done(null, user, req.flash("message", "Logged in Successfully"))
-        })
+          return done(null, user, req.flash("message", "Logged in Successfully"));
+        });
       }
     )
-  )
-}
+  );
+};

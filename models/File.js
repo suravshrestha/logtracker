@@ -1,4 +1,4 @@
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
 
 //Models
@@ -27,14 +27,14 @@ var FileSchema = new mongoose.Schema({
             contentType: String
         }
     }]
-})
+});
 
 
-var File = module.exports = mongoose.model('File', FileSchema, 'files')
+var File = module.exports = mongoose.model("File", FileSchema, "files");
 
 module.exports.addFile = function (newFile, callback) {
-    newFile.save(callback)
-}
+    newFile.save(callback);
+};
 
 module.exports.getFilesbyProjectId = function (pId, callback) {
     let query = {

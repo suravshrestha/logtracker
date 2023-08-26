@@ -5,7 +5,7 @@ var Faculty = require("../models/Faculty");
 //process minute form
 // POST /minutes/add
 
-router.use("/getall", async (req, res, next) => {
+router.use("/getall", async () => {
   const all = await Faculty.find({});
   global.faculty = all;
 });

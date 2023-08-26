@@ -1,11 +1,11 @@
-var mongoose = require('mongoose')
+var mongoose = require("mongoose");
 
 
 //Models
 var EventSchema = new mongoose.Schema({
   projectId: {
     type: String,
-    default: 'todo',
+    default: "todo",
     required: true,
   },
   createdDate: {
@@ -39,26 +39,26 @@ var EventSchema = new mongoose.Schema({
     default: false,
     required: true
 }
-})
+});
 
 
-var Event = module.exports = mongoose.model('Event', EventSchema, 'events')
+var Event = module.exports = mongoose.model("Event", EventSchema, "events");
 
 module.exports.createEvent = function (newEvent, callback){
-    newEvent.save(callback)
-}
+    newEvent.save(callback);
+};
 
 module.exports.deleteEvent = function (eventid, callback){
-    Event.deleteOne({ _id: eventid }, callback)
-    
-}
+    Event.deleteOne({ _id: eventid }, callback);
+
+};
 module.exports.Completed = function (eventId,callback) {
   let query = {
       _id: eventId
-  }
+  };
 
   Event.find(query, function (err, e) {
-      if (err) throw err
+      if (err) throw err;
 
       //minutes exist in database
 
@@ -67,22 +67,22 @@ module.exports.Completed = function (eventId,callback) {
                   $set: {
                      isCompleted: true
                   }
-              }, 
+              },
               {
                   new: true
               },
               callback
-          )
+          );
       }
-  })
-}
+  });
+};
 module.exports.Remaining = function (eventId,callback) {
   let query = {
       _id: eventId
-  }
+  };
 
   Event.find(query, function (err, e) {
-      if (err) throw err
+      if (err) throw err;
 
       //minutes exist in database
 
@@ -91,18 +91,18 @@ module.exports.Remaining = function (eventId,callback) {
                   $set: {
                      isCompleted: false
                   }
-              }, 
+              },
               {
                   new: true
               },
               callback
-          )
+          );
       }
-  })
-}
+  });
+};
 module.exports.getEventsbyPid = function (pId,callback) {
-    let query = { 
+    let query = {
         projectId:pId
-        }
-    Event.find(query, callback)
-  }
+        };
+    Event.find(query, callback);
+  };
