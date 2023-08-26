@@ -13,7 +13,6 @@ var ProjectSchema = new mongoose.Schema({
   },
   teamname: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
@@ -138,9 +137,9 @@ module.exports.getProjectsbySV = function (name, callback) {
   };
   Project.find(query, callback);
 };
-module.exports.getProjectsbyCreator = function (name, callback) {
+module.exports.getProjectsbyCreator = function (email, callback) {
   let query = {
-    createdBy: name,
+    createdBy: email,
   };
   Project.find(query, callback);
 };

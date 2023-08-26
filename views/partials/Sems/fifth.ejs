@@ -17,13 +17,13 @@
         <div class="card ">
             <div class="project-card">
                 <h4 class="card-title"><%= projects.projectname%></h4>
-                <p class="card-text">SUPERVISED BY: <%= projects.supervisor[0].split(':')[0]%><br />
+                <p class="card-text">SUPERVISED BY: <%= projects.supervisor[0].split(' (')[0] %><br />
                     STUDENTS:
-                    <% projects.team.forEach(function(team) { %>
-                    <% if(team!=null ) { %>
-                        <% team = team.split(':')[0]%>
-                    <%= team.split(' ').pop().charAt(0)%>.<%=
-                                    team.split(' ')[0]%>,<% }}) %><br />
+                    <% projects.team.forEach(function(team, index) { %>
+                        <% if (team != null) { %>
+                          <%= team.split(' ')[0] %>,
+                        <% }}) %>                      
+                      <br />
       
                                     CREATED ON: <%=projects.createdDate.toLocaleString()%></p>
                                     <div class="project-badges">
@@ -69,7 +69,7 @@
         <div class="card ">
             <div class="project-card">
                 <h4 class="card-title"><%= projects.projectname%></h4>
-                <p class="card-text">SUPERVISED BY: <%= projects.supervisor[0].split(':')[0]%><br />
+                <p class="card-text">SUPERVISED BY: <%= projects.supervisor[0].split(' (')[0] %><br />
                     STUDENTS:
                     <% projects.team.forEach(function(team) { %>
                     <% if(team!=null ) { %>

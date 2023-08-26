@@ -95,10 +95,6 @@
   margin-top: 4px;
 }
 
-.login-form.create-team div.options input:nth-of-type(2) {
-  margin-left: 5px;
-}
-
 .login-form.create-team div.options input.button-type {
   font-size: 15px;
   background-color: #37464d;

@@ -76,14 +76,79 @@ module.exports = function (passport) {
   });
 
   // For Login using local strategy
-  router.post(
-    "/login",
-    passport.authenticate("local", {
-      failureRedirect: "/",
-      successRedirect: "/dashboard",
-      failureFlash: true,
-    })
-  );
+  router.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+
+      if (!user) {
+        // Authentication failed, redirect to '/'
+        return res.redirect("/");
+      }
+
+      // Check if it's the user's first login (you need to have this logic defined)
+      if (user.firstLogin) {
+        // It's the user's first login, redirect to change-password route
+        req.flash("message", "");
+        return res.redirect("/change-password");
+      }
+
+      // It's not the first login, redirect to the dashboard
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
+
+        return res.redirect("/dashboard");
+      });
+    })(req, res, next);
+  });
+
+  router.post("/change-password", async (req, res) => {
+    const { email, password, newPassword, confirmNewPassword } = req.body;
+
+    try {
+      if (!email || !password || !newPassword || !confirmNewPassword) {
+        req.flash("message", "Please fill all the fields");
+        return res.redirect("/change-password");
+      }
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        const error = "User not found";
+        req.flash("message", error);
+        return res.redirect("/change-password");
+      }
+
+      if (!user.comparePassword(password, user.password)) {
+        const error = "Invalid old password";
+        req.flash("message", error);
+        return res.redirect("/change-password");
+      }
+
+      if (newPassword !== confirmNewPassword) {
+        const error = "New password and confirm new password don't match";
+        req.flash("message", error);
+        return res.redirect("/change-password");
+      }
+
+      // Update the user's password
+      user.password = user.hashPassword(newPassword);
+      user.firstLogin = false;
+      await user.save();
+
+      req.flash("message", "Password change successful");
+      return res.redirect("/");
+    } catch (error) {
+      console.error("Error occurred:", error);
+      req.flash(
+        "message",
+        "An error occurred while processing your request. Please try again later."
+      );
+    }
+  });
 
   router.use("/activate", function (req, res) {
     const body = req.body;

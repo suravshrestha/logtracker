@@ -66,8 +66,8 @@
     <%project.forEach( function(project ){ %>
       <% project.supervisor.forEach(element => { %>
         <% if (element!= null) { %>
-          <h6 style="margin-bottom: 10px"><%= element.split(':')[0]%></h6>
-          <p style="margin-bottom: 10px"><%= element.split(':')[1]%></p>
+          <h6 style="margin-bottom: 10px"><%= element.split(' (')[0] %></h6>
+          <p style="margin-bottom: 10px"><%- element.split(' (')[1].split(')')[0] %></p>
         <% } %>
         
       <% }) %>

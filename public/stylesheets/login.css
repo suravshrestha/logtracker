@@ -38,12 +38,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 60px;
 }
 
 .login-body-top img {
   height: 80px;
   width: 80px;
+}
+
+.change-password-text {
+  text-align: left; /* Add this line to align the text to the left */
+}
+
+.change-password-text h5,
+.change-password-text p {
+  margin: 0; /* Remove default margins for the heading and paragraph */
 }
 
 .login-form {
