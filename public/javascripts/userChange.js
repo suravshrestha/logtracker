@@ -6,20 +6,20 @@ $(document).ready(function () {
 
   $("[data-launch-view]").click(function (e) {
     e.preventDefault();
-    var viewName = $(this).attr("data-launch-view");
+    const viewName = $(this).attr("data-launch-view");
     showView(viewName);
   });
 
   $("[studentData-launch-view]").click(function (e) {
     e.preventDefault();
-    var viewName = $(this).attr("studentData-launch-view");
+    const viewName = $(this).attr("studentData-launch-view");
     console.log(viewName);
     showView(viewName);
   });
 
   $("[level-launch-view]").click(function (e) {
     e.preventDefault();
-    var viewName = $(this).attr("level-launch-view");
+    const viewName = $(this).attr("level-launch-view");
     if (viewName === "masters") {
       $("#bachBtns").hide();
       $("#bachContent").hide();

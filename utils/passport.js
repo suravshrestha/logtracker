@@ -1,5 +1,5 @@
-var localStrategy = require("passport-local").Strategy;
-var User = require("../models/User");
+const localStrategy = require("passport-local").Strategy;
+const User = require("../models/User");
 
 module.exports = function (passport) {
   //Add user to Session

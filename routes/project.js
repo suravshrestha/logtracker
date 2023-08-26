@@ -1,25 +1,25 @@
-var express = require("express");
-var router = express.Router();
-var Project = require("../models/Project");
-var Event = require("../models/Event");
-var File = require("../models/File");
-var { loggedin } = require("../middleware/ensureLogin");
-var upload = require("../middleware/multer");
-var fs = require("fs");
-var path = require("path");
-var stream = require("stream");
+const express = require("express");
+const router = express.Router();
+const Project = require("../models/Project");
+const Event = require("../models/Event");
+const File = require("../models/File");
+const { loggedin } = require("../middleware/ensureLogin");
+const upload = require("../middleware/multer");
+const fs = require("fs");
+const path = require("path");
+const stream = require("stream");
 
 
 router.post("/createteams", function (req, res) {
   //console.log(teamname)
-  var projectname = req.body.projectname;
-  var description = req.body.description;
-  // var std = req.body.std;
-  var teamname = req.body.teamname;
-  var semester = req.body.sems;
-  var faculty = req.body.faculty;
-  var subject = req.body.subject;
-  var level = req.body.level;
+  const projectname = req.body.projectname;
+  const description = req.body.description;
+  // const std = req.body.std;
+  const teamname = req.body.teamname;
+  let semester = req.body.sems;
+  let faculty = req.body.faculty;
+  let subject = req.body.subject;
+  const level = req.body.level;
   if(level === "masters"){
     semester = "unselected";
     faculty = "unselected";
@@ -67,10 +67,10 @@ router.post("/createteams", function (req, res) {
 
 router.post("/editteams/:pId", function (req, res) {
   const pId = req.params.pId;
-  var projectname = req.body.projectname;
-  var description = req.body.description;
-  var teamname = req.body.teamname;
-  var semester = req.body.sems;
+  const projectname = req.body.projectname;
+  const description = req.body.description;
+  const teamname = req.body.teamname;
+  const semester = req.body.sems;
   const supervisor = [req.body.supervisor1, req.body.supervisor2];
     const team = [
       req.body.std1,
@@ -109,9 +109,9 @@ router.post("/uploadFiles/:projectId", upload.array("uploadedFiles", 10), (req, 
   try {
     console.log(JSON.stringify(req.body));
 
-    var uploadedFile = new Array();
+    const uploadedFile = new Array();
     for (let i = 0; i < req.files.length; i++) {
-      var data = {
+      const data = {
         name: req.files[i].filename,
         fileId: ID(),
         docs: {
@@ -152,7 +152,7 @@ router.post("/uploadFiles/:projectId", upload.array("uploadedFiles", 10), (req, 
 
 });
 
-var ID = function () {
+const ID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
@@ -172,14 +172,14 @@ router.get("/files/download", function (req, response, next) {
       } else {
         file.attachment.forEach((element) => {
           if (element.fileId === req.query.data) {
-            let fileType = element.docs.contentType;
-            let fileName = element.name.substring(
+            const fileType = element.docs.contentType;
+            const fileName = element.name.substring(
               element.name.indexOf("-") + 1
             );
-            let fileData = element.docs.data;
+            const fileData = element.docs.data;
 
-            var fileContents = Buffer.from(fileData, "base64");
-            var readStream = new stream.PassThrough();
+            const fileContents = Buffer.from(fileData, "base64");
+            const readStream = new stream.PassThrough();
             readStream.end(fileContents);
 
             response.set(
@@ -199,22 +199,22 @@ router.get("/files/download", function (req, response, next) {
 router.post("/event/save/:pId", (req, res) => {
   try {
     console.log(JSON.stringify(req.body));
-    let errors = [];
+    const errors = [];
 
-    var title = req.body.title;
-    var dueDate = new Date(req.body.eventDate);
+    const title = req.body.title;
+    const dueDate = new Date(req.body.eventDate);
     dueDate.setHours(23);
     dueDate.setMinutes(59);
     dueDate.setSeconds(59);
-    var description = req.body.description;
-    var pId = req.params.pId;
+    const description = req.body.description;
+    const pId = req.params.pId;
     if (!title) {
       errors.push({
         msg: "Add event field cannot be empty!",
       });
     }
 
-    // var mId = mongoose.Types.ObjectId(req.params.mId);
+    // const mId = mongoose.Types.ObjectId(req.params.mId);
 
     const event = new Event();
     event.projectId = pId;
@@ -251,7 +251,7 @@ router.post("/event/save/:pId", (req, res) => {
 router.post("/defenceComment/:pId", (req, res) => {
   try {
     console.log(JSON.stringify(req.body));
-    var pId = req.params.pId;
+    const pId = req.params.pId;
 
     let message = {};
 
@@ -300,7 +300,7 @@ router.post("/requestApproveDefence/:pId", loggedin, (req, res) => {
   const pId = req.params.pId;
   const userstatus = req.user.userstatus;
   console.log(userstatus);
-  var message = req.body.message;
+  const message = req.body.message;
   Project.findById(pId, function (err, project) {
     //Save to database
     console.log(project);
@@ -374,7 +374,7 @@ router.post("/defenseCall", loggedin, (req, res) => {
   }
   console.log(query);
 
-  var defense = {
+  const defense = {
     date: new Date(req.body.defenseDate),
     time: req.body.defenseTime,
     term: req.body.terms,
@@ -396,7 +396,7 @@ router.post("/defenseCall", loggedin, (req, res) => {
               res.status(500).send("Database error occured");
             }
           });
-          var query = { event: "Mid-Term Defense", projectId: project._id },
+          const query = { event: "Mid-Term Defense", projectId: project._id },
             update = {
               event: "Mid-Term Defense",
               dueDate: defense.date,
@@ -417,7 +417,7 @@ router.post("/defenseCall", loggedin, (req, res) => {
             }
           });
 
-          query = { event: "Final Defense", projectId: project._id },
+          const query = { event: "Final Defense", projectId: project._id },
             update = {
               event: "Final Defense",
               dueDate: defense.date,
@@ -442,7 +442,7 @@ router.post("/defenseCall", loggedin, (req, res) => {
 
 router.use("/event/completed/:pId/:id/:title", loggedin, (req, res, next) => {
   Event.Completed(req.params.id, function (err) {
-    var pId = req.params.pId;
+    const pId = req.params.pId;
     if (req.params.title === "Final Defense") {
       Project.completeProject(pId, function () { });
     }
@@ -462,7 +462,7 @@ router.use("/event/completed/:pId/:id/:title", loggedin, (req, res, next) => {
 
 router.use("/event/remaining/:pId/:id", loggedin, (req, res, next) => {
   Event.Remaining(req.params.id, function (err) {
-    var pId = req.params.pId;
+    const pId = req.params.pId;
     if (err) {
       req.flash("message", "Cannot Complete task : ".concat(err));
       return next(err);

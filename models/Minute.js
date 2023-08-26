@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 
 //Models
-var MinuteSchema = new mongoose.Schema({
+const MinuteSchema = new mongoose.Schema({
     projectId: {
         type: String,
         required: true,
@@ -48,10 +48,10 @@ var MinuteSchema = new mongoose.Schema({
 });
 
 
-var Minute = module.exports = mongoose.model("Minute", MinuteSchema, "minutes");
+const Minute = module.exports = mongoose.model("Minute", MinuteSchema, "minutes");
 
 module.exports.getMinutesbyPid = function (pid, callback) {
-    let query = {
+    const query = {
         projectId: pid
     };
     Minute.find(query, callback);
@@ -62,7 +62,7 @@ module.exports.createMinute = function (newMinute, callback) {
 };
 
 module.exports.updateMinute = function (mId, newMinute, callback) {
-    let query = {
+    const query = {
         _id: mId
     };
 
@@ -91,7 +91,7 @@ module.exports.updateMinute = function (mId, newMinute, callback) {
     };
 
 module.exports.verifyMinute = function (minuteId,callback) {
-    let query = {
+    const query = {
         _id: minuteId
     };
 
@@ -116,7 +116,7 @@ module.exports.verifyMinute = function (minuteId,callback) {
 };
 
 module.exports.unVerifyMinute = function (minuteId,callback) {
-    let query = {
+    const query = {
         _id: minuteId
     };
 

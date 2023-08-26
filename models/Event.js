@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 
 //Models
-var EventSchema = new mongoose.Schema({
+const EventSchema = new mongoose.Schema({
   projectId: {
     type: String,
     default: "todo",
@@ -42,7 +42,7 @@ var EventSchema = new mongoose.Schema({
 });
 
 
-var Event = module.exports = mongoose.model("Event", EventSchema, "events");
+const Event = module.exports = mongoose.model("Event", EventSchema, "events");
 
 module.exports.createEvent = function (newEvent, callback){
     newEvent.save(callback);
@@ -53,7 +53,7 @@ module.exports.deleteEvent = function (eventid, callback){
 
 };
 module.exports.Completed = function (eventId,callback) {
-  let query = {
+  const query = {
       _id: eventId
   };
 
@@ -77,7 +77,7 @@ module.exports.Completed = function (eventId,callback) {
   });
 };
 module.exports.Remaining = function (eventId,callback) {
-  let query = {
+  const query = {
       _id: eventId
   };
 
@@ -101,7 +101,7 @@ module.exports.Remaining = function (eventId,callback) {
   });
 };
 module.exports.getEventsbyPid = function (pId,callback) {
-    let query = {
+    const query = {
         projectId:pId
         };
     Event.find(query, callback);

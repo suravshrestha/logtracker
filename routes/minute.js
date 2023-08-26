@@ -1,13 +1,13 @@
-var express = require("express");
-var router = express.Router();
-var Minute = require("../models/Minute");
-var path = require("path");
-var fs = require("fs");
-var upload = require("../middleware/multer");
-var { loggedin } = require("../middleware/ensureLogin");
-var stream = require("stream");
+const express = require("express");
+const router = express.Router();
+const Minute = require("../models/Minute");
+const path = require("path");
+const fs = require("fs");
+const upload = require("../middleware/multer");
+const { loggedin } = require("../middleware/ensureLogin");
+const stream = require("stream");
 
-var commentRouter = require("./comment");
+const commentRouter = require("./comment");
 
 router.use("/comment", commentRouter);
 
@@ -19,21 +19,22 @@ router.post(
   upload.array("uploadedFiles", 10),
   (req, res) => {
     //console.log("save")
+    const pId = req.params.pId;
+
     try {
       console.log(JSON.stringify(req.body));
-      let errors = [];
+      const errors = [];
 
       console.log(req.files);
       console.log(req.files.length);
 
-      var title = req.body.title;
-      var description = req.body.description;
-      var pId = req.params.pId;
-      var img = new Array();
+      const title = req.body.title;
+      const description = req.body.description;
+      const img = new Array();
       console.log(pId);
 
       for (let i = 0; i < req.files.length; i++) {
-        var file = {
+        const file = {
           name: req.files[i].filename,
           fileId: ID(),
           docs: {
@@ -83,7 +84,7 @@ router.post(
   }
 );
 
-var ID = function () {
+const ID = function () {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
@@ -106,14 +107,14 @@ router.get("/download", function (req, response, next) {
       } else {
         minute.attachment.forEach((element) => {
           if (element.fileId === req.query.data) {
-            let fileType = element.docs.contentType;
-            let fileName = element.name.substring(
+            const fileType = element.docs.contentType;
+            const fileName = element.name.substring(
               element.name.indexOf("-") + 1
             );
-            let fileData = element.docs.data;
+            const fileData = element.docs.data;
 
-            var fileContents = Buffer.from(fileData, "base64");
-            var readStream = new stream.PassThrough();
+            const fileContents = Buffer.from(fileData, "base64");
+            const readStream = new stream.PassThrough();
             readStream.end(fileContents);
 
             response.set(
@@ -131,13 +132,14 @@ router.get("/download", function (req, response, next) {
 });
 
 router.post("/edit/:pId/:mId", (req, res) => {
+  const pId = req.params.pId;
+
   try {
     console.log(JSON.stringify(req.body));
-    let errors = [];
+    const errors = [];
 
-    var title = req.body.title;
-    var description = req.body.description;
-    var pId = req.params.pId;
+    const title = req.body.title;
+    const description = req.body.description;
 
     if (!title || !description) {
       errors.push({

@@ -1,10 +1,10 @@
-var express = require("express");
-var router = express.Router();
-var User = require("../models/User");
-var mail = require("../shared/Email");
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User");
+const mail = require("../shared/Email");
 
 router.use("/passwordReset", function (req, res) {  //when send token button is pressed
-  var body = req.body,
+  const body = req.body,
     email = body.email; // to be used for sending token to email
   User.findOne({ email: email }, function (err, user) { //finding user by email
     if (err) {  //error in user.findOne. idk exactly when this err occurs
@@ -52,7 +52,7 @@ router.use("/passwordTknVerify", function (req, res) {  //when reset password bu
   if (req.method === "GET"){
     console.log("err- get request has no meaning in this function");
   }
-  var body = req.body,
+  const body = req.body,
     token = body.rstPwsTkn,
     newPassword = body.nwPwd,
     cmnwPassword = body.cnwPwd; // to be used for sending token to email

@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
-var bcrypt = require("bcrypt-nodejs"); //for encrypting password with hash
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt-nodejs"); //for encrypting password with hash
 
 //Models
-var UserSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,

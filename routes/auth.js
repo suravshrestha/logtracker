@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var User = require("../models/User");
-var Status = require("../models/Status");
-var mail = require("../shared/Email");
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User");
+const Status = require("../models/Status");
+const mail = require("../shared/Email");
 
 module.exports = function (passport) {
   router.post("/signup", async (req, res) => {
@@ -168,8 +168,8 @@ module.exports = function (passport) {
 
   router.use("/check", function (req, res) {
     console.log("check");
-    let errors = [];
-    var body = req.body;
+    const errors = [];
+    const body = req.body;
     const email = body.email;
     console.log(body);
     const code = body.confirmCode;

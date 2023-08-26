@@ -1,14 +1,14 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var User = require("../models/User");
-var Minute = require("../models/Minute");
-var Comment = require("../models/Comment");
-var Project = require("../models/Project");
-var Event = require("../models/Event");
-var Faculty = require("../models/Faculty");
-var File = require("../models/File");
-var { loggedin, ensureAuth } = require("../middleware/ensureLogin");
+const User = require("../models/User");
+const Minute = require("../models/Minute");
+const Comment = require("../models/Comment");
+const Project = require("../models/Project");
+const Event = require("../models/Event");
+const Faculty = require("../models/Faculty");
+const File = require("../models/File");
+const { loggedin, ensureAuth } = require("../middleware/ensureLogin");
 const batches = require("../utils/batches");
 const programs = require("../utils/programs");
 

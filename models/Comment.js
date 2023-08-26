@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 
 //Models
-var CommentSchema = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
   minuteId: {
     type: mongoose.ObjectId,
     default: "todo",
@@ -25,7 +25,7 @@ var CommentSchema = new mongoose.Schema({
 });
 
 
-var Comment = module.exports = mongoose.model("Comment", CommentSchema, "comments");
+const Comment = module.exports = mongoose.model("Comment", CommentSchema, "comments");
 
 module.exports.createComment = function (newComment, callback){
     newComment.save(callback);
@@ -36,7 +36,7 @@ module.exports.deleteComment = function (commentid, callback){
 };
 
 module.exports.getCommentsbyMid = function (mid,callback) {
-    let query = {
+    const query = {
         minuteId:mid
         };
     Comment.find(query, callback);

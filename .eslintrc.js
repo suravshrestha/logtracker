@@ -23,5 +23,13 @@ module.exports = {
     "object-curly-spacing": ["error", "always"], // Enforce consistent spacing inside braces
     "arrow-spacing": ["error", { before: true, after: true }], // Enforce consistent spacing before and after the arrow in arrow functions
     "space-infix-ops": ["error", { int32Hint: false }], // Ensure there are spaces around infix operators.
+    "no-var": 1, // Require let or const instead of var
+    "prefer-const": [
+      "error",
+      {
+        destructuring: "any",
+        ignoreReadBeforeAssign: false,
+      },
+    ],
   },
 };

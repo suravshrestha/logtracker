@@ -1,16 +1,16 @@
 const config = require("./utils/config");
 
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var connectDB = require("./utils/mongo");
-var flash = require("connect-flash");
-var session = require("express-session");
-var MongoStore = require("connect-mongo");
-var passport = require("passport");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const connectDB = require("./utils/mongo");
+const flash = require("connect-flash");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
+const passport = require("passport");
 
 //Passport configs
 require("./utils/passport")(passport);
@@ -19,15 +19,15 @@ require("./utils/passport")(passport);
 connectDB();
 
 //Routes
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var authRouter = require("./routes/auth")(passport);
-var pwdResetRouter = require("./routes/pwdReset");
-var minuteRouter = require("./routes/minute");
-var projectRouter = require("./routes/project");
-var facultyRouter = require("./routes/faculty");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/users");
+const authRouter = require("./routes/auth")(passport);
+const pwdResetRouter = require("./routes/pwdReset");
+const minuteRouter = require("./routes/minute");
+const projectRouter = require("./routes/project");
+const facultyRouter = require("./routes/faculty");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

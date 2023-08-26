@@ -1,20 +1,20 @@
-var express = require("express");
-var router = express.Router();
-var Comment = require("../models/Comment");
-var mongoose = require("mongoose");
-var { loggedin } = require("../middleware/ensureLogin");
+const express = require("express");
+const router = express.Router();
+const Comment = require("../models/Comment");
+const mongoose = require("mongoose");
+const { loggedin } = require("../middleware/ensureLogin");
 
 
 //process comment form
 // POST /comment/save
 
 router.post("/save/:mId/:pId",(req, res) => {
-  var pId = req.params.pId;
+  const pId = req.params.pId;
   try {
     console.log(JSON.stringify(req.body));
-    let errors = [];
+    const errors = [];
 
-    var cmt = req.body.cmt;
+    const cmt = req.body.cmt;
 
     if (!cmt) {
       errors.push({
@@ -22,7 +22,7 @@ router.post("/save/:mId/:pId",(req, res) => {
       });
     }
 
-    var mId = mongoose.Types.ObjectId(req.params.mId);
+    const mId = mongoose.Types.ObjectId(req.params.mId);
 
     const comment = new Comment();
     comment.minuteId = mId;
@@ -78,7 +78,7 @@ router.use("/getall", loggedin, (req, res, next) => {
 });
 
 router.use("/delete/:id/:pId", loggedin, (req, res, next) => {
-  var pId = req.params.pId;
+  const pId = req.params.pId;
   console.log(req.params.id);
   Comment.findById({ _id:req.params.id }, function (err, cmt) {
     if (cmt.commentedBy === req.user.username) {

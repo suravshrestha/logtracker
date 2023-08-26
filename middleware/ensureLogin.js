@@ -1,6 +1,6 @@
 
 //to verify login
-var loggedin = function (req, res, next) {
+const loggedin = function (req, res, next) {
     if (req.isAuthenticated()) {
       next();
     } else {
@@ -8,7 +8,7 @@ var loggedin = function (req, res, next) {
     }
   };
   //to protecting from login bypass
-  var ensureAuth = function(req, res, next){
+  const ensureAuth = function(req, res, next){
     if(!req.isAuthenticated()) {
       return next();
     }else {
