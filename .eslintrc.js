@@ -22,5 +22,6 @@ module.exports = {
     "no-trailing-spaces": "error", // Disallow trailing whitespace at the end of lines
     "object-curly-spacing": ["error", "always"], // Enforce consistent spacing inside braces
     "arrow-spacing": ["error", { before: true, after: true }], // Enforce consistent spacing before and after the arrow in arrow functions
+    "space-infix-ops": ["error", { int32Hint: false }], // Ensure there are spaces around infix operators.
   },
 };

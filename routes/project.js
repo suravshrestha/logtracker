@@ -369,8 +369,8 @@ router.post("/defenseCall", loggedin, (req, res) => {
   };
   if(req.body.level === "masters"){
     query.faculty = "unselected";
-    query.subject= "unselected";
-    query.semester= "unselected";
+    query.subject = "unselected";
+    query.semester = "unselected";
   }
   console.log(query);
 

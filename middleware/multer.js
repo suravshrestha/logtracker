@@ -7,7 +7,7 @@ var storage = multer.diskStorage({
     },
     filename : function (req, file , cb){
         // image.jpg
-        cb(null,  Date.now() +"-"+file.originalname);
+        cb(null,  Date.now() + "-" + file.originalname);
     }
 });
 
