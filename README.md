@@ -46,11 +46,13 @@ This might take a while to complete.
 4. Create a `.env` file in the root of the project and set the following credentials:
 ```
 #.env
-SECRET=
+SECRET=verygoodsecret
 
-# Nodemailer
-SMTP_EMAIL=
-SMTP_PASSWORD=
+# Admin credentials
+ADMIN_NAME=Admin
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@ioe.edu.np
+ADMIN_PASSWORD=yoursecretpassword
 ```
 For development, get the Nodemailer credentials from [Ethereal](https://ethereal.email/)
 
@@ -63,8 +65,6 @@ You can view the application at http://localhost:3000/.
 
 **Note:**
 - When the development server is first run, it will populate the faculties using the data from config/faculties.json.
-- For admin and teacher signup use `ioe.edu.np` domain
-- For student signup use `pcampus.edu.np` domain
 
 Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.
 
