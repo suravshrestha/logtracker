@@ -55,6 +55,8 @@ ADMIN_EMAIL=
 ADMIN_PASSWORD=
 ```
 
+Note: For admin email, use `ioe.edu.np` domain.
+
 5. Start the development server
 ```
 npm run dev
