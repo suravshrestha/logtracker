@@ -46,13 +46,13 @@ This might take a while to complete.
 4. Create a `.env` file in the root of the project and set the following credentials:
 ```
 #.env
-SECRET=verygoodsecret
+SECRET=
 
 # Admin credentials
-ADMIN_NAME=Admin
-ADMIN_USERNAME=admin
-ADMIN_EMAIL=admin@ioe.edu.np
-ADMIN_PASSWORD=yoursecretpassword
+ADMIN_NAME=
+ADMIN_USERNAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
 
 5. Start the development server
