@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 //Models
-var FacultySchema = new mongoose.Schema({
+const FacultySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -13,45 +13,43 @@ var FacultySchema = new mongoose.Schema({
 
 });
 
-var Faculty = (module.exports = mongoose.model(
-  "Faculty",
-  FacultySchema,
-  "faculties"
-));
+const Faculty = mongoose.model("Faculty", FacultySchema, "faculties");
 
 module.exports.addFaculty = function (newFaculty, callback) {
   newFaculty.save(callback);
 };
 
+module.exports = Faculty;
+
 // module.exports.getSubjectsbyFacultySem = function (name, callback) {
-//   let query = {
+//   const query = {
 //     team: { $all: [name] },
 //   };
 //   Project.find(query, callback);
 // };
 
 // module.exports.getProjectsbySV = function (name, callback) {
-//   let query = {
+//   const query = {
 //     supervisor: name,
 //   };
 //   Project.find(query, callback);
 // };
 // module.exports.getProjectsbyCreator = function (name, callback) {
-//   let query = {
+//   const query = {
 //     createdBy: name,
 //   };
 //   Project.find(query, callback);
 // };
 
 // module.exports.getProjectsbyId = function (projectId, callback) {
-//   let query = {
+//   const query = {
 //     _id: projectId,
 //   };
 //   Project.find(query, callback);
 // };
 
 // module.exports.getProjectsbySemester = function (sem, callback) {
-//   let query = {
+//   const query = {
 //     semester: sem,
 //   };
 //   Project.find(query, callback);

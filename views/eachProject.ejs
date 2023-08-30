@@ -102,13 +102,13 @@
 
       </div>
       <div class="user-buttons">
-        <% if(user.userstatus == "admin"){%>
+        <% if(userstatus == "admin"){%>
           <a type="button" class="btn btn-primary logout-btn"
             href="/admin/editTeam/<%= pId%>">
             Edit Team
           </a>
         <%}%>
-        <% if(user.userstatus == "student"){%>
+        <% if(userstatus == "student"){%>
           <a type="button" class="btn btn-primary logout-btn"
             href="/student/eachProject/addProjectRepo/<%= pId%>">
             Add Approved Files
@@ -118,7 +118,7 @@
           href="/student/eachProject/projectRepo/<%= pId%>">
           View Approved Files
         </a>
-        <% if(user.userstatus == "student"){%>
+        <% if(userstatus == "student"){%>
           <a type="button" class="btn btn-primary logout-btn"
             href="/student/eachProject/addMinutes/<%= pId%>">
             Add Minutes

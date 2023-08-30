@@ -1,8 +1,8 @@
-var mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 
 //Models
-var MinuteSchema = new mongoose.Schema({
+const MinuteSchema = new mongoose.Schema({
     projectId: {
         type: String,
         required: true,
@@ -45,29 +45,29 @@ var MinuteSchema = new mongoose.Schema({
     updatedBy: {
         type: String,
     }
-})
+});
 
 
-var Minute = module.exports = mongoose.model('Minute', MinuteSchema, 'minutes')
+const Minute = module.exports = mongoose.model("Minute", MinuteSchema, "minutes");
 
 module.exports.getMinutesbyPid = function (pid, callback) {
-    let query = {
+    const query = {
         projectId: pid
-    }
-    Minute.find(query, callback)
-}
+    };
+    Minute.find(query, callback);
+};
 
 module.exports.createMinute = function (newMinute, callback) {
-    newMinute.save(callback)
-}
+    newMinute.save(callback);
+};
 
 module.exports.updateMinute = function (mId, newMinute, callback) {
-    let query = {
+    const query = {
         _id: mId
-    }
+    };
 
     Minute.find(query, function (err, m) {
-        if (err) throw err
+        if (err) throw err;
 
         //minutes exist in database
 
@@ -83,20 +83,20 @@ module.exports.updateMinute = function (mId, newMinute, callback) {
                 new: true
             },
             callback
-        )
+        );
         }
-    })
+    });
 
- 
-    }
+
+    };
 
 module.exports.verifyMinute = function (minuteId,callback) {
-    let query = {
+    const query = {
         _id: minuteId
-    }
+    };
 
     Minute.find(query, function (err, m) {
-        if (err) throw err
+        if (err) throw err;
 
         //minutes exist in database
 
@@ -105,23 +105,23 @@ module.exports.verifyMinute = function (minuteId,callback) {
                     $set: {
                        isVerified: true
                     }
-                }, 
+                },
                 {
                     new: true
                 },
                 callback
-            )
+            );
         }
-    })
-}
+    });
+};
 
 module.exports.unVerifyMinute = function (minuteId,callback) {
-    let query = {
+    const query = {
         _id: minuteId
-    }
+    };
 
     Minute.find(query, function (err, m) {
-        if (err) throw err
+        if (err) throw err;
 
         //minutes exist in database
 
@@ -130,12 +130,12 @@ module.exports.unVerifyMinute = function (minuteId,callback) {
                     $set: {
                        isVerified: false
                     }
-                }, 
+                },
                 {
                     new: true
                 },
                 callback
-            )
+            );
         }
-    })
-}
+    });
+};

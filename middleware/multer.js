@@ -1,16 +1,16 @@
-const multer = require('multer');
+const multer = require("multer");
 
 // set storage
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination : function ( req , file , cb ){
-        cb(null, 'public/uploads')
+        cb(null, "public/uploads");
     },
     filename : function (req, file , cb){
         // image.jpg
-        var ext = file.originalname.substr(file.originalname.lastIndexOf('.'));
-
-        cb(null,  Date.now() +'-'+file.originalname)
+        cb(null,  Date.now() + "-" + file.originalname);
     }
-})
+});
 
-module.exports = store = multer({ storage : storage })
+const store = multer({ storage: storage });
+
+module.exports = store;

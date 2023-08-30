@@ -1,23 +1,23 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var User = require("../models/User");
-var Minute = require("../models/Minute");
-var Comment = require("../models/Comment");
-var Project = require("../models/Project");
-var Event = require("../models/Event");
-var Faculty = require("../models/Faculty");
-var File = require("../models/File");
-var { loggedin, ensureAuth } = require("../middleware/ensureLogin");
+const User = require("../models/User");
+const Minute = require("../models/Minute");
+const Comment = require("../models/Comment");
+const Project = require("../models/Project");
+const Event = require("../models/Event");
+const Faculty = require("../models/Faculty");
+const File = require("../models/File");
+const { loggedin, ensureAuth } = require("../middleware/ensureLogin");
 const batches = require("../utils/batches");
 const programs = require("../utils/programs");
 
 /* GET Dashboard. */
 router.get("/dashboard", loggedin, function (req, res, next) {
-  user = req.user;
+  const user = req.user;
   // userdetail = req.session.passport.user
   // console.log(userdetail);
-  if (user.userstatus == "student") {
+  if (user.userstatus === "student") {
     Project.getProjectsbyUser(
       `${user.name} (${user.username})`,
       function (err, projects) {
@@ -36,7 +36,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
         }
       }
     );
-  } else if (user.userstatus == "teacher") {
+  } else if (user.userstatus === "teacher") {
     Project.getProjectsbySV(
       `${user.name} (${user.email})`,
       function (err, projects) {
@@ -56,7 +56,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
     );
 
     // res.send(user);
-  } else if (user.userstatus == "admin") {
+  } else if (user.userstatus === "admin") {
     Project.getProjectsbyCreator(user.email, function (err, projects) {
       if (err) {
         return next(err);
@@ -75,7 +75,7 @@ router.get("/dashboard", loggedin, function (req, res, next) {
 });
 
 /* GET home page. */
-router.get("/", ensureAuth, function (req, res, next) {
+router.get("/", ensureAuth, function (req, res) {
   res.render("index", {
     title: "Log Tracker | Login",
     message: req.flash("message"),
@@ -85,7 +85,7 @@ router.get("/", ensureAuth, function (req, res, next) {
 /* GET Individual Project */
 router.get("/student/eachProject/:pId", loggedin, function (req, res, next) {
   console.log(req.params.pId);
-  user = req.user;
+  const user = req.user;
   Project.findById(req.params.pId, function (err, project) {
     if (err) {
       console.log(err);
@@ -129,7 +129,7 @@ router.get("/student/eachProject/:pId", loggedin, function (req, res, next) {
 router.get(
   "/student/eachProject/addMinutes/:pId",
   loggedin,
-  function (req, res, next) {
+  function (req, res) {
     res.render("addMinutes", {
       title: "Add Minutes | Log Tracker",
       message: req.flash("message"),
@@ -142,7 +142,7 @@ router.get(
 router.get(
   "/student/eachProject/addProjectRepo/:pId",
   loggedin,
-  function (req, res, next) {
+  function (req, res) {
     res.render("addFiles", {
       title: "Add Approved Files | Log Tracker",
       message: req.flash("message"),
@@ -155,7 +155,7 @@ router.get(
 router.get(
   "/student/eachProject/projectRepo/:pId",
   loggedin,
-  function (req, res, next) {
+  function (req, res) {
     File.getFilesbyProjectId(req.params.pId, function (err, files) {
       console.log("............", files);
       res.render("projectFiles", {
@@ -172,7 +172,7 @@ router.get(
 router.get(
   "/student/eachProject/editMinutes/:pId/:mId",
   loggedin,
-  function (req, res, next) {
+  function (req, res) {
     Minute.findById(req.params.mId, function (err, minute) {
       res.render("editMinutes", {
         message: req.flash("message"),
@@ -185,9 +185,9 @@ router.get(
   }
 );
 
-router.get("/admin/editTeam/:pId", loggedin, function (req, res, next) {
-  user = req.user;
-  if (user.userstatus == "admin") {
+router.get("/admin/editTeam/:pId", loggedin, function (req, res) {
+  const user = req.user;
+  if (user.userstatus === "admin") {
     User.find({}, function (err, usr) {
       Faculty.find({}, function (err, faculty) {
         if (err) {
@@ -212,8 +212,8 @@ router.get("/admin/editTeam/:pId", loggedin, function (req, res, next) {
   }
 });
 
-router.get("/admin/defenseCall", loggedin, function (req, res, next) {
-  user = req.user;
+router.get("/admin/defenseCall", loggedin, function (req, res) {
+  const user = req.user;
   Faculty.find({}, function (err, faculty) {
     if (err) {
       console.log(err);
@@ -232,7 +232,7 @@ router.get("/admin/defenseCall", loggedin, function (req, res, next) {
 
 /* GET Teacher's Individual Project*/
 router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
-  user = req.user;
+  const user = req.user;
   Project.findById(req.params.pId, function (err, project) {
     if (err) {
       console.log(err);
@@ -273,7 +273,7 @@ router.get("/teacher/eachProject/:pId", loggedin, function (req, res, next) {
 });
 
 /* forgot passsword */
-router.use("/forgotPassword", function (req, res, next) {
+router.use("/forgotPassword", function (req, res) {
   //when forgot password link is clicked
   res.render("forgotPassword", {
     title: "Log Tracker | PasswordReset",
@@ -282,7 +282,7 @@ router.use("/forgotPassword", function (req, res, next) {
 });
 
 // Change passowrd
-router.use("/change-password", function (req, res, next) {
+router.use("/change-password", function (req, res) {
   // const message = "You have to change your password on your first login.";
   res.render("changePassword", {
     title: "Log Tracker | Change Password",
@@ -290,9 +290,9 @@ router.use("/change-password", function (req, res, next) {
   });
 });
 
-router.get("/admin/createTeam", loggedin, function (req, res, next) {
-  user = req.user;
-  if (user.userstatus == "admin") {
+router.get("/admin/createTeam", loggedin, function (req, res) {
+  const user = req.user;
+  if (user.userstatus === "admin") {
     User.find({}, function (err, usr) {
       Faculty.find({}, function (err, faculty) {
         if (err) {
@@ -314,7 +314,7 @@ router.get("/admin/createTeam", loggedin, function (req, res, next) {
   }
 });
 
-router.get("/admin/sync-students", loggedin, function (req, res, next) {
+router.get("/admin/sync-students", loggedin, function (req, res) {
   if (req.user.userstatus !== "admin") {
     return res.redirect("/dashboard");
   }
@@ -330,7 +330,7 @@ router.get("/admin/sync-students", loggedin, function (req, res, next) {
 /* GET Admin Each Project */
 /* Todo: Fix Routing */
 router.get("/admin/eachProject/:pId", loggedin, function (req, res, next) {
-  user = req.user;
+  const user = req.user;
   Minute.getMinutesbyPid(req.params.pId, function (err, minutes) {
     if (err) {
       return next(err);

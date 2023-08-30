@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var User = require("../models/User");
-var Status = require("../models/Status");
-var mail = require("../shared/Email");
+const express = require("express");
+const router = express.Router();
+const User = require("../models/User");
+const Status = require("../models/Status");
+const mail = require("../shared/Email");
 
 module.exports = function (passport) {
   router.post("/signup", async (req, res) => {
@@ -77,7 +77,7 @@ module.exports = function (passport) {
 
   // For Login using local strategy
   router.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
+    passport.authenticate("local", (err, user) => {
       if (err) {
         return next(err);
       }
@@ -168,23 +168,23 @@ module.exports = function (passport) {
 
   router.use("/check", function (req, res) {
     console.log("check");
-    let errors = [];
-    var body = req.body;
-    email = body.email;
+    const errors = [];
+    const body = req.body;
+    const email = body.email;
     console.log(body);
-    code = body.confirmCode;
+    const code = body.confirmCode;
     if (!email || !code) {
       errors.push({ msg: "Please fill in all fields" });
     }
     Status.findOne({ email: email }, function (err, doc) {
       console.log("status found");
       if (doc) {
-        if (doc.code == code) {
+        if (doc.code === code) {
           res.redirect("/");
           User.findOne({ email: email }, function (err, doc) {
             if (doc) {
               doc.activateStatus = true;
-              doc.save(function (err, user) {
+              doc.save(function (err) {
                 if (err) {
                   console.log(err);
                   req.flash("message", "Successful");

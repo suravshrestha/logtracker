@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 //Models
-var ProjectSchema = new mongoose.Schema({
+const ProjectSchema = new mongoose.Schema({
   createdDate: {
     type: Date,
     default: Date.now(),
@@ -113,7 +113,7 @@ var ProjectSchema = new mongoose.Schema({
   defComment: [{ comment: String, option: String, commentedBy: String }],
 });
 
-var Project = (module.exports = mongoose.model(
+const Project = (module.exports = mongoose.model(
   "Project",
   ProjectSchema,
   "projects"
@@ -124,7 +124,7 @@ module.exports.createProject = function (newProject, callback) {
 };
 
 module.exports.getProjectsbyUser = function (name, callback) {
-  let query = {
+  const query = {
     team: { $all: [name] },
   };
   console.log("ok",name,query);
@@ -132,27 +132,27 @@ module.exports.getProjectsbyUser = function (name, callback) {
 };
 
 module.exports.getProjectsbySV = function (name, callback) {
-  let query = {
+  const query = {
     supervisor: name,
   };
   Project.find(query, callback);
 };
 module.exports.getProjectsbyCreator = function (email, callback) {
-  let query = {
+  const query = {
     createdBy: email,
   };
   Project.find(query, callback);
 };
 
 module.exports.getProjectsbyId = function (projectId, callback) {
-  let query = {
+  const query = {
     _id: projectId,
   };
   Project.find(query, callback);
 };
 
 module.exports.getProjectsbySemester = function (sem, callback) {
-  let query = {
+  const query = {
     semester: sem,
   };
   Project.find(query, callback);
@@ -165,7 +165,6 @@ module.exports.updateProject = function (projectId, newProject, callback) {
       $set: {
         description: newProject.description,
         projectname: newProject.projectname,
-        description: newProject.description,
         supervisor: newProject.supervisor,
         team: newProject.team,
         createdBy: newProject.createdBy,

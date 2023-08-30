@@ -2,7 +2,7 @@
 
 Note: This repo has some improvement over: https://gitlab.com/ersauravadhikari/logtracker
 
-Log Tracker is a web application to track the updates of a project or a thesis. The application has three modes:
+Log Tracker is a web application to track the updates of a project or a thesis. It was built as the Software Engineering Project in 5th semester, Computer Engineering. The application has three modes:
 * **Admin Mode**   
 An admin 
 	* Can create/edit a new project
@@ -48,11 +48,14 @@ This might take a while to complete.
 #.env
 SECRET=
 
-# Nodemailer
-SMTP_EMAIL=
-SMTP_PASSWORD=
+# Admin credentials
+ADMIN_NAME=
+ADMIN_USERNAME=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
 ```
-For development, get the Nodemailer credentials from [Ethereal](https://ethereal.email/)
+
+Note: For admin email, use `ioe.edu.np` domain.
 
 5. Start the development server
 ```
@@ -61,12 +64,7 @@ npm run dev
 
 You can view the application at http://localhost:3000/.
 
-**Note:**
-- When the development server is first run, it will populate the faculties using the data from config/faculties.json.
-- For admin and teacher signup use `ioe.edu.np` domain
-- For student signup use `pcampus.edu.np` domain
-
-Log Tracker was built as the Software Engineering Project in 5th semester, Computer Engineering.
+Note: When the development server is first run, it will populate the faculties using the data from config/faculties.json.
 
 ## Team Members
 * [Sandhya Baral](https://github.com/Sandukkk) (077BCT076)
