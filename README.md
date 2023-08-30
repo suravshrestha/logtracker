@@ -54,7 +54,6 @@ ADMIN_USERNAME=admin
 ADMIN_EMAIL=admin@ioe.edu.np
 ADMIN_PASSWORD=yoursecretpassword
 ```
-For development, get the Nodemailer credentials from [Ethereal](https://ethereal.email/)
 
 5. Start the development server
 ```
